@@ -100,9 +100,10 @@ public class DeckController {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
                     String name = dbO.getString("name");
+                    String password = dbO.getString("password");
 
 
-                    Document newDeck = addNewDeck(name);
+                    Document newDeck = addNewDeck(name, password);
                     if (newDeck != null) {
                         return newDeck.toJson();
                     } else {
@@ -135,7 +136,7 @@ public class DeckController {
 
     }
 
-    public Document addNewDeck(String name){
+    public Document addNewDeck(String name, String password){
         if (name == null || name.equals("")) {
             return null;
         }
@@ -145,6 +146,7 @@ public class DeckController {
         newDeck.append("_id", newID);
         newDeck.append("name", name);
         newDeck.append("cards", Collections.emptyList());
+        newDeck.append("password", password);
         try{
             deckCollection.insertOne(newDeck);
         }

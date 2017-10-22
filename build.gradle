@@ -5,19 +5,19 @@ evaluationDependsOn ":server"
 task clearMongoDB(type: Exec) {
     group = "application"
     executable "mongo"
-    args = ["i1-droptable-dev", "--eval", "printjson(db.dropDatabase())"]
+    args = ["i2-triscuit-dev", "--eval", "printjson(db.dropDatabase())"]
 }
 
 task seedCardData(type: Exec) {
     executable = "mongoimport"
 
-    args = ["-d", "i1-droptable-dev", "-c", "cards", "--file", "cards.seed.json", "--jsonArray"]
+    args = ["-d", "i2-triscuit-dev", "-c", "cards", "--file", "cards.seed.json", "--jsonArray"]
 }
 
 task seedDeckData(type: Exec) {
     executable = "mongoimport"
 
-    args = ["-d", "i1-droptable-dev", "-c", "decks", "--file", "decks.seed.json", "--jsonArray"]
+    args = ["-d", "i2-triscuit-dev", "-c", "decks", "--file", "decks.seed.json", "--jsonArray"]
 }
 
 task seedMongoDB {
