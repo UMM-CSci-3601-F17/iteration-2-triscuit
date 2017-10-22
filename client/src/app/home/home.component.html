@@ -4,8 +4,18 @@
     <img src="https://www.zomex.com/libs/images/layout/logo-template-chain-links-preview.jpg" alt="logo">
     <h3>this image is a template, don't worry (or do)</h3>
     <div class="list-buttons">
+        <button id="play-button" mat-raised-button color="primary" [routerLink]="['/decks']">
+            Play SAGE!
+        </button>
+    </div>
+    <div class="list-buttons">
         <button id="deck-button" mat-raised-button color="primary" [routerLink]="['/decks']">
             Decks
+        </button>
+    </div>
+    <div class="list-buttons">
+        <button id="settings-button" mat-raised-button color="primary">
+            Settings
         </button>
     </div>
 </div>
