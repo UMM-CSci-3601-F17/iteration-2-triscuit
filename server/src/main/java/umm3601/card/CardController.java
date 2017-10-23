@@ -114,14 +114,14 @@ public class CardController {
                     BasicDBObject dbO = (BasicDBObject) o;
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
-                    Object synonym = dbO.get("synonym");
-                    Object antonym = dbO.getString("antonym");
-                    Object general_sense = dbO.get("general_sense");
-                    Object example_usage = dbO.get("example_usage");
+                    
+                    String[] synonym = retrieveHints(dbO,"synonym");
+                    String[] antonym = retrieveHints(dbO, "antonym");
+                    String[] general_sense = retrieveHints(dbO,"general_sense");
+                    String[] example_usage = retrieveHints(dbO, "example_usage");
 
 
-
-                    Document newCard = addNewCard(deckID, word, (String[])synonym, (String[])antonym, (String[])general_sense, (String[])example_usage);
+                    Document newCard = addNewCard(deckID, word, synonym, antonym, general_sense, example_usage);
                     if (newCard != null) {
                         return newCard.toJson();
                     } else {
@@ -137,6 +137,7 @@ public class CardController {
                     System.err.println("A value was malformed or omitted, new card request failed.");
                     return false;
                 }
+
 
             }
             else
@@ -154,6 +155,18 @@ public class CardController {
 
     }
 
+    public String[] retrieveHints(BasicDBObject dbO,String key){
+        try {
+            String[] hints = (String[]) dbO.get(key);
+            return hints;
+        }
+        catch (ClassCastException e){
+            System.err.println("Received an incorrect object type.");
+            return null;
+        }
+
+    }
+
 
     public Document addNewCard(String deckID, String word, String[] synonym, String[] antonym, String[] general_sense, String[] example_usage){
         if (deckID == null || word == null || synonym == null || antonym == null || general_sense == null || example_usage == null) {
@@ -167,10 +180,20 @@ public class CardController {
 
         newCard.append("_id", newID);
         newCard.append("word", word);
-        newCard.append("synonym", synonym);
-        newCard.append("antonym", antonym);
-        newCard.append("general_sense", general_sense);
-        newCard.append("example_usage", example_usage);
+
+        for(int i = 0; i < synonym.length;i++){
+            newCard.append("synonym", synonym[i]);
+        }
+        for(int i = 0; i < antonym.length;i++){
+            newCard.append("antonym", antonym[i]);
+        }
+        for(int i = 0; i < general_sense.length;i++){
+            newCard.append("general_sense", general_sense[i]);
+        }
+        for(int i = 0; i < example_usage.length;i++){
+            newCard.append("example_usage", example_usage[i]);
+        }
+
         try{
             cardCollection.insertOne(newCard);
             deckCollection.updateOne(new Document("_id", new ObjectId(deckID)), new Document("$push", new Document("cards", newID)));

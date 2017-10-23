@@ -130,19 +130,35 @@
             "$oid": "59dac7b147c9429bff9ba9bf"
         },
         "word": "hoary",
-        "synonym": ["mature, archaic"],
-        "antonym": ["modern, new, recent"],
-        "general_sense": ["gray or white with or as if with age extremely old"],
-        "example_usage": ["hoary oak trees with dripping moss and gnarled limbs shaded us from the sun"]
+        "synonym": [
+            "mature, archaic"
+        ],
+        "antonym": [
+            "modern, new, recent"
+        ],
+        "general_sense": [
+            "gray or white with or as if with age extremely old"
+        ],
+        "example_usage": [
+            "hoary oak trees with dripping moss and gnarled limbs shaded us from the sun"
+        ]
     },
     {
         "_id": {
             "$oid": "59dac7b147c9429bff9ba9c0"
         },
         "word": "Tenebrous",
-        "synonym": ["gloomy, murky"],
-        "antonym": ["bright, luminous"],
-        "general_sense": ["being without light or without much light"],
-        "example_usage": ["in the midst of those tenebrous days Thomas Paine penned the immortal words These are the times that try men's souls"]
+        "synonym": [
+            "gloomy, murky"
+        ],
+        "antonym": [
+            "bright, luminous"
+        ],
+        "general_sense": [
+            "being without light or without much light"
+        ],
+        "example_usage": [
+            "in the midst of those tenebrous days Thomas Paine penned the immortal words These are the times that try men's souls"
+        ]
     }
 ]
