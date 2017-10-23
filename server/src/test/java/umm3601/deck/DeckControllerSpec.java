@@ -31,7 +31,7 @@ public class DeckControllerSpec {
     @Before
     public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase db = mongoClient.getDatabase("i1-droptable-test");
+        MongoDatabase db = mongoClient.getDatabase("iteration-2-triscuit");
         MongoCollection<Document> deckDocuments = db.getCollection("decks");
         MongoCollection<Document> cardDocuments = db.getCollection("cards");
         deckDocuments.drop();
