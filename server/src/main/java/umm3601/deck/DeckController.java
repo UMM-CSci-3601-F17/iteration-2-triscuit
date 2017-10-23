@@ -41,7 +41,7 @@ public class DeckController {
         }
         catch (IllegalArgumentException e){
             res.status(400);
-            res.body("The requested user id " + id + " wasn't a legal Mongo Object ID.\n" +
+            res.body("The requested deck id " + id + " wasn't a legal Mongo Object ID.\n" +
                 "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
             return "";
         }
@@ -141,6 +141,7 @@ public class DeckController {
         }
         Document newDeck = new Document();
         ObjectId newID = new ObjectId();
+
         System.out.println(newID.toString());
         newDeck.append("_id", newID);
         newDeck.append("name", name);
