@@ -7,12 +7,14 @@
         "synonym": [
             "artistic"
         ],
-        "antonym": ["Efferant Reading"],
+        "antonym": [
+            "Efferant Reading"
+        ],
         "general_sense": [
             "a term to describe reading for pleasure"
         ],
         "example_usage": [
-            "A readers response that is driven by personal feelings from the transactionbetween the reader with text Louise Rosenblatt 1978 term"
+            "A readers response that is driven by personal feelings from the transaction between the reader with text Louise Rosenblatt 1978 term"
         ]
     },
     {
@@ -20,20 +22,37 @@
             "$oid": "59dac7b147c9429bff9ba9b4"
         },
         "word": "Alliteration",
-        "synonym": ["allegory"],
-        "antonym": ["free verse poetry"],
-        "general_sense": ["repetition of the initial sound (s) or letters in a group of words."],
-        "example_usage": ["Often found in prose or poetry: Craig loved his fuzzy furry ferret."]
+        "synonym": [
+            "allegory"
+        ],
+        "antonym": [
+            "free verse poetry"
+        ],
+        "general_sense": [
+            "repetition of the initial sound (s) or letters in a group of words."
+        ],
+        "example_usage": [
+            "Often found in prose or poetry: Craig loved his fuzzy furry ferret."
+        ]
     },
     {
         "_id": {
             "$oid": "59dac7b147c9429bff9ba9b5"
         },
         "word": "Plethora",
-        "synonym": ["Excess, plenty"],
-        "antonym": ["Lack, scarcity, few"],
-        "general_sense": ["overabundance"],
-        "example_usage": ["There was a plethora of rubber duckies in the pool."]
+        "synonym": ["Excess",
+            "plenty"
+        ],
+        "antonym": ["Lack",
+            "scarcity",
+            "few"
+        ],
+        "general_sense": [
+            "overabundance"
+        ],
+        "example_usage": [
+            "There was a plethora of rubber duckies in the pool."
+        ]
     },
     {
         "_id": {
@@ -50,18 +69,27 @@
             "$oid": "59dac7b147c9429bff9ba9b7"
         },
         "word": "Cloze",
-        "synonym": ["Fill in the blank","Give me words"],
-        "antonym": ["No words are missing from the text"],
-        "general_sense": ["procedure used to measure comprehension or text difficulty in which a person must supply elements that have been systematically deleted from the text"],
-        "example_usage": ["I felt _____(good)(bad) about my first day in school."]
+        "synonym": [
+            "Fill in the blank",
+            "Give me words"
+        ],
+        "antonym": [
+            "No words are missing from the text"
+        ],
+        "general_sense": [
+            "procedure used to measure comprehension or text difficulty in which a person must supply elements that have been systematically deleted from the text"
+        ],
+        "example_usage": [
+            "I felt _____(good)(bad) about my first day in school."
+        ]
     },
     {
         "_id": {
             "$oid": "59dac7b147c9429bff9ba9b8"
         },
         "word": "Abecedarian",
-        "synonym": ["elementary, basal, basic"],
-        "antonym": ["advanced, complex"],
+        "synonym": ["elementary", "basal", "basic"],
+        "antonym": ["advanced", "complex"],
         "general_sense": ["one who is learning the alphabet"],
         "example_usage": ["an abecedarian approach to historical study"]
     },
@@ -70,8 +98,8 @@
             "$oid": "59dac7b147c9429bff9ba9b9"
         },
         "word": "Bedizen",
-        "synonym": ["adorn, beautify"],
-        "antonym": ["blemish, deface, spoil"],
+        "synonym": ["adorn", "beautify"],
+        "antonym": ["blemish", "deface", "spoil"],
         "general_sense": ["to dress or adorn gaudily"],
         "example_usage": ["an elderly actress bedizening herself with makeup and jewelry"]
     },
@@ -80,7 +108,7 @@
             "$oid": "59dac7b147c9429bff9ba9ba"
         },
         "word": "Atavistic",
-        "synonym": ["ancestral, throwback"],
+        "synonym": ["ancestral", "throwback"],
         "antonym": ["Futuristic"],
         "general_sense": ["a trait or character typical of an ancestral form"],
         "example_usage": ["His portrait suggested atavistic qualities."]
@@ -100,8 +128,8 @@
             "$oid": "59dac7b147c9429bff9ba9bc"
         },
         "word": "puckish",
-        "synonym": ["mischievious, whimsical"],
-        "antonym": ["grim, grave"],
+        "synonym": ["mischievious", "whimsical"],
+        "antonym": ["grim", "grave"],
         "general_sense": ["tending to or exhibiting reckless playfulness"],
         "example_usage": ["The puckish boys loved practical jokes."]
     },
@@ -110,8 +138,8 @@
             "$oid": "59dac7b147c9429bff9ba9bd"
         },
         "word": "effervescent",
-        "synonym": ["merry, lively, sparkling"],
-        "antonym": ["flat, bland, dull"],
+        "synonym": ["merry", "lively", "sparkling"],
+        "antonym": ["flat", "bland", "dull"],
         "general_sense": ["to bubble, hiss, and foam as gas escapes\nto show liveliness or exhilaration"],
         "example_usage": ["History isnâ€™t a flawless guide, but periods of economic and political dislocation can actually inspire an efflorescence of culture."]
     },
@@ -121,9 +149,13 @@
         },
         "word": "Obstreperous",
         "synonym": [
-            "racous", "rowdy"
+            "racous",
+            "rowdy"
         ],
-        "antonym": ["compliant, amenable"],
+        "antonym": [
+            "compliant",
+            "amenable"
+        ],
         "general_sense": ["marked by unruly or aggressive noisiness"],
         "example_usage": ["an obstreperous crowd protesting the government's immigration policy"]
     },
