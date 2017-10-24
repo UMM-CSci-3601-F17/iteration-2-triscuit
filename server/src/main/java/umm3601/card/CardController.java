@@ -114,7 +114,7 @@ public class CardController {
                     BasicDBObject dbO = (BasicDBObject) o;
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
-                    
+
                     String[] synonym = retrieveHints(dbO,"synonym");
                     String[] antonym = retrieveHints(dbO, "antonym");
                     String[] general_sense = retrieveHints(dbO,"general_sense");

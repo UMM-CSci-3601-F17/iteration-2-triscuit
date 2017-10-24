@@ -47,10 +47,10 @@
     },
     {
         "_id": {
-            "$oid": ["59dac7b147c9429bff9ba9b7"]
+            "$oid": "59dac7b147c9429bff9ba9b7"
         },
         "word": "Cloze",
-        "synonym": ["Fill in the blank"],
+        "synonym": ["Fill in the blank","Give me words"],
         "antonym": ["No words are missing from the text"],
         "general_sense": ["procedure used to measure comprehension or text difficulty in which a person must supply elements that have been systematically deleted from the text"],
         "example_usage": ["I felt _____(good)(bad) about my first day in school."]
@@ -120,7 +120,9 @@
             "$oid": "59dac7b147c9429bff9ba9be"
         },
         "word": "Obstreperous",
-        "synonym": ["racous, rowdy"],
+        "synonym": [
+            "racous", "rowdy"
+        ],
         "antonym": ["compliant, amenable"],
         "general_sense": ["marked by unruly or aggressive noisiness"],
         "example_usage": ["an obstreperous crowd protesting the government's immigration policy"]
@@ -131,10 +133,10 @@
         },
         "word": "hoary",
         "synonym": [
-            "mature, archaic"
+            "mature,", "archaic"
         ],
         "antonym": [
-            "modern, new, recent"
+            "modern", "new", "recent"
         ],
         "general_sense": [
             "gray or white with or as if with age extremely old"
@@ -149,10 +151,10 @@
         },
         "word": "Tenebrous",
         "synonym": [
-            "gloomy, murky"
+            "gloomy", "murky"
         ],
         "antonym": [
-            "bright, luminous"
+            "bright", "luminous"
         ],
         "general_sense": [
             "being without light or without much light"
