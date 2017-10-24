@@ -158,17 +158,5 @@ public class DeckController {
         return newDeck;
     }
 
-    public String getPassword(Request req, Response res) {
-        Iterable<Document> jsonDecks = deckCollection.aggregate(
-            Arrays.asList(
-                Aggregates.project(
-                    Projections.fields(
-                        Projections.excludeId(),
-                        Projections.include("password")
-                    )
-                )
-            )
-        );
-    }
 
 }

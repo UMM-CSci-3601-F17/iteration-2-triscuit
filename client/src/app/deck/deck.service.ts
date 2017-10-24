@@ -26,10 +26,6 @@ export class DeckService {
       );
   }
 
-  private getPassword(deck: Observable<Deck>) {
-
-  }
-
   public getDeck(id:string) : Observable<Deck> {
       let newDeck : Observable<Deck> = this.http.request(this.deckUrl + "/" + id).map(res => res.json());
       return newDeck;
@@ -47,10 +43,6 @@ export class DeckService {
       return response;
   }
 
-  public checkPassword(password: string, id: string) : boolean {
-      let newDeck : Observable<Deck> = this.http.request(this.deckUrl + "/" + id).map(res => res.json());
-      let correctPassword : boolean = (newDeck.)
-  }
 
 
 
