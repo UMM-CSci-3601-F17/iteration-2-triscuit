@@ -97,7 +97,7 @@ public class CardControllerSpec {
             "                \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
             "            },\n" +
             "            {\n" +
-            "                \"$oid\": \"59dac7b147c9429bff9ba9b4\"\n" +
+            "                \"$oid\": \"59dac7b147c9429bff9ba9bc\"\n" +
             "            },\n" +
             "            {\n" +
             "                \"$oid\": \"59dac7b147c9429bff9ba9b5\"\n" +
@@ -108,8 +108,9 @@ public class CardControllerSpec {
 
         testDeckId = new ObjectId();
         ObjectId[] cards = {new ObjectId("59dac7b147c9429bff9ba9b3"),
-            new ObjectId("59dac7b147c9429bff9ba9b4"),
+            new ObjectId("59dac7b147c9429bff9ba9bc"),
             new ObjectId("59dac7b147c9429bff9ba9b5")};
+
         BasicDBObject testDeck = new BasicDBObject("_id", testDeckId)
             .append("name", "test deck 3")
             .append("cards", cards);
@@ -122,41 +123,41 @@ public class CardControllerSpec {
             "        \"_id\": {\n" +
             "            \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
             "        },\n" +
-            "        \"word\": [\n" + "Aesthetic reading\"],\n" +
-            "        \"synonym\": [\n"+ "artistic\"],\n" +
-            "        \"antonym\": [\n" + "Efferant Reading\"],\n" +
-            "        \"general_sense\": [\n" + "a term to describe reading for pleasure\"],\n" +
-            "        \"example_usage\": [\n"+"A readers response that is driven by personal feelings from the transactionbetween the reader with text Louise Rosenblatt 1978 term\"\n]" +
+            "        \"word\": \"Aesthetic reading\",\n" +
+            "        \"synonym\": [\"artistic\"],\n" +
+            "        \"antonym\": [\"Efferant Reading\"],\n" +
+            "        \"general_sense\": [\"a term to describe reading for pleasure\"],\n" +
+            "        \"example_usage\": [\"A readers response that is driven by personal feelings from the transactionbetween the reader with text Louise Rosenblatt 1978 term\"\n]" +
             "    }"));
         testCards.add(Document.parse("{\n" +
             "        \"_id\": {\n" +
-            "            \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
+            "            \"$oid\": \"59dac7b147c9429bff9ba9bb\"\n" +
             "        },\n" +
-            "        \"word\": [\n" + "Automaticity\"],\n" +
-            "        \"synonym\": [\n"+ "Fluency\"],\n" +
-            "        \"antonym\": [\n" + "difficult\"],\n" +
-            "        \"general_sense\": [\n" + "rapid and fluent recognition of words requiring only a minumm of effort and attention\"],\n" +
-            "        \"example_usage\": [\n"+"Automatic processing of information from text including comprehension, decoding words and other tasks\"\n]" +
+            "        \"word\": \"Automaticity\",\n" +
+            "        \"synonym\": [\"Fluency\"],\n" +
+            "        \"antonym\": [\"difficult\"],\n" +
+            "        \"general_sense\": [\"rapid and fluent recognition of words requiring only a minumm of effort and attention\"],\n" +
+            "        \"example_usage\": [\"Automatic processing of information from text including comprehension, decoding words and other tasks\"\n]" +
             "    }"));
         testCards.add(Document.parse("{\n" +
             "        \"_id\": {\n" +
-            "            \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
+            "            \"$oid\": \"59dac7b147c9429bff9ba9b5\"\n" +
             "        },\n" +
-            "        \"word\": [\n" + "Plethora\"],\n" +
-            "        \"synonym\": [\n"+ "Excess\", \n" + "plenty\"],\n" +
-            "        \"antonym\": [\n" + "Lack\", \n" + "scarcity\", \n" + "few\n ],\n" +
-            "        \"general_sense\": [\n" + "overabundance\"],\n" +
-            "        \"example_usage\": [\n"+"AThere was a plethora of rubber duckies in the pool.\"\n]" +
+            "        \"word\": \"Plethora\",\n" +
+            "        \"synonym\": [\"Excess\", \"plenty\"],\n" +
+            "        \"antonym\": [\"Lack\", \"scarcity\", \"few\"],\n" +
+            "        \"general_sense\": [\"overabundance\"],\n" +
+            "        \"example_usage\": [\"There was a plethora of rubber duckies in the pool.\"\n]" +
             "    }"));
         testCards.add(Document.parse("{\n" +
             "        \"_id\": {\n" +
-            "            \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
+            "            \"$oid\": \"59dac7b147c9429bff9ba9bc\"\n" +
             "        },\n" +
-            "        \"word\": [\n" + "puckish\"],\n" +
-            "        \"synonym\": [\n"+ "mischievious\"],\n" +
-            "        \"antonym\": [\n" + "grim\"],\n" +
-            "        \"general_sense\": [\n" + "tending to or exhibiting reckless playfulness\"],\n" +
-            "        \"example_usage\": [\n"+"The puckish boys loved practical jokes.\"\n]" +
+            "        \"word\": \"puckish\", \n" +
+            "        \"synonym\": [\"mischievious\"],\n" +
+            "        \"antonym\": [\"grim\"],\n" +
+            "        \"general_sense\": [\"tending to or exhibiting reckless playfulness\"],\n" +
+            "        \"example_usage\": [\"The puckish boys loved practical jokes.\"\n]" +
             "    }"));
 
 
@@ -179,6 +180,8 @@ public class CardControllerSpec {
         return arrayReader.decode(reader, DecoderContext.builder().build());
     }
 
+
+
     public List<String> getStringsFromBsonArray(BsonArray docs, String field) {
         return docs.stream()
             .map(x -> x.asDocument().getString(field).getValue())
@@ -187,14 +190,22 @@ public class CardControllerSpec {
     }
 
     @Test
+    public void testDeckSetUp() {
+        String jsonResult = deckController.getDeck(testDeckId.toHexString());
+        Document deck = Document.parse(jsonResult);
+        ArrayList<Document> cards = deck.get("cards", ArrayList.class);
+        assertEquals("Should be 3 cards in the deck", 3, cards.size());
+    }
+
+    @Test
     public void getAllCards() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora","puckish");
         assertEquals("Words should match", expectedWords, words);
     }
 
@@ -217,10 +228,13 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 cards", 4, docs.size());
+        assertEquals("Should be 5 cards", 5, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Cool", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Cool", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
+
+
+
         // assertEquals("words should match", Arrays.asList("Aesthetic reading", "Alliteration", "Pletora", "Cool"),cards.stream().map(x -> x.getString("word")).collect(Collectors.toList()));
     }
 
@@ -232,7 +246,7 @@ public class CardControllerSpec {
         String[] example_usage = {"this is virtually done"};
         cardController.addNewCard(testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
 
-        Map<String, String[]> emptyMap = new HashMap<>();
+
         String jsonResult = deckController.getDeck(testDeckId.toHexString());
         Document deck = Document.parse(jsonResult);
         ArrayList<Document> cards = deck.get("cards", ArrayList.class);
@@ -246,9 +260,9 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
@@ -271,9 +285,9 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
@@ -295,9 +309,9 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
