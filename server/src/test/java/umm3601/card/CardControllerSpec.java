@@ -189,6 +189,7 @@ public class CardControllerSpec {
             .collect(Collectors.toList());
     }
 
+
     @Test
     public void testDeckSetUp() {
         String jsonResult = deckController.getDeck(testDeckId.toHexString());
@@ -232,11 +233,9 @@ public class CardControllerSpec {
         List<String> words = getStringsFromBsonArray(docs, "word");
         List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Cool", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
-
-
-
-        // assertEquals("words should match", Arrays.asList("Aesthetic reading", "Alliteration", "Pletora", "Cool"),cards.stream().map(x -> x.getString("word")).collect(Collectors.toList()));
     }
+
+
 
     @Test
     public void addToDeck() {
