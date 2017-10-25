@@ -82,6 +82,7 @@ public class DeckController {
             Aggregates.match(filterDoc),
             Aggregates.project(Projections.fields(
                 Projections.include("name"),
+                Projections.include("password"),
                 Projections.computed("count", new Document("$size", "$cards"))
             ))
         ));
