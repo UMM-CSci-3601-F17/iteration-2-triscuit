@@ -59,6 +59,7 @@ export class DeckComponent implements OnInit {
           this.deckService.getDeck(this.id).subscribe(
               deck => {
                   this.deck = deck;
+                  this.correctPassword = (this.deck.password === null);
               }
           );
       });
