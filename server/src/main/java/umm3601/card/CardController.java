@@ -183,19 +183,11 @@ public class CardController {
 
         newCard.append("_id", newID);
         newCard.append("word", word);
+        newCard.append("synonym",synonym);
+        newCard.append("antonym",antonym);
+        newCard.append("general_sense",general_sense);
+        newCard.append("example_usage",example_usage);
 
-        for(int i = 0; i < synonym.size();i++){
-            newCard.append("synonym", synonym.get(i));
-        }
-        for(int i = 0; i < antonym.size();i++){
-            newCard.append("antonym", antonym.get(i));
-        }
-        for(int i = 0; i < general_sense.size();i++){
-            newCard.append("general_sense", general_sense.get(i));
-        }
-        for(int i = 0; i < example_usage.size();i++){
-            newCard.append("example_usage", example_usage.get(i));
-        }
 
         try{
             cardCollection.insertOne(newCard);
