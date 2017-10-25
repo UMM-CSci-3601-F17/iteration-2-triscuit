@@ -97,7 +97,7 @@ public class CardControllerSpec {
             "                \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
             "            },\n" +
             "            {\n" +
-            "                \"$oid\": \"59dac7b147c9429bff9ba9b4\"\n" +
+            "                \"$oid\": \"59dac7b147c9429bff9ba9bc\"\n" +
             "            },\n" +
             "            {\n" +
             "                \"$oid\": \"59dac7b147c9429bff9ba9b5\"\n" +
@@ -108,8 +108,9 @@ public class CardControllerSpec {
 
         testDeckId = new ObjectId();
         ObjectId[] cards = {new ObjectId("59dac7b147c9429bff9ba9b3"),
-            new ObjectId("59dac7b147c9429bff9ba9b4"),
+            new ObjectId("59dac7b147c9429bff9ba9bc"),
             new ObjectId("59dac7b147c9429bff9ba9b5")};
+
         BasicDBObject testDeck = new BasicDBObject("_id", testDeckId)
             .append("name", "test deck 3")
             .append("cards", cards);
@@ -123,33 +124,43 @@ public class CardControllerSpec {
             "            \"$oid\": \"59dac7b147c9429bff9ba9b3\"\n" +
             "        },\n" +
             "        \"word\": \"Aesthetic reading\",\n" +
-            "        \"synonym\": \"artistic\",\n" +
-            "        \"antonym\": \"Efferant Reading\",\n" +
-            "        \"general_sense\": \"a term to describe reading for pleasure\",\n" +
-            "        \"example_usage\": \"A readers response that is driven by personal feelings from the transactionbetween the reader with text Louise Rosenblatt 1978 term\"\n" +
+            "        \"synonym\": [\"artistic\"],\n" +
+            "        \"antonym\": [\"Efferant Reading\"],\n" +
+            "        \"general_sense\": [\"a term to describe reading for pleasure\"],\n" +
+            "        \"example_usage\": [\"A readers response that is driven by personal feelings from the transactionbetween the reader with text Louise Rosenblatt 1978 term\"\n]" +
             "    }"));
-
         testCards.add(Document.parse("{\n" +
             "        \"_id\": {\n" +
-            "            \"$oid\": \"59dac7b147c9429bff9ba9b4\"\n" +
+            "            \"$oid\": \"59dac7b147c9429bff9ba9bb\"\n" +
             "        },\n" +
-            "        \"word\": \"Alliteration\",\n" +
-            "        \"synonym\": \"allegory\",\n" +
-            "        \"antonym\": \"free verse poetry\",\n" +
-            "        \"general_sense\": \"repetition of the initial sound (s) or letters in a group of words.\",\n" +
-            "        \"example_usage\": \"Often found in prose or poetry: Craig loved his fuzzy furry ferret.\"\n" +
+            "        \"word\": \"Automaticity\",\n" +
+            "        \"synonym\": [\"Fluency\"],\n" +
+            "        \"antonym\": [\"difficult\"],\n" +
+            "        \"general_sense\": [\"rapid and fluent recognition of words requiring only a minumm of effort and attention\"],\n" +
+            "        \"example_usage\": [\"Automatic processing of information from text including comprehension, decoding words and other tasks\"\n]" +
             "    }"));
-
         testCards.add(Document.parse("{\n" +
             "        \"_id\": {\n" +
             "            \"$oid\": \"59dac7b147c9429bff9ba9b5\"\n" +
             "        },\n" +
-            "        \"word\": \"Pletora\",\n" +
-            "        \"synonym\": \"Excess, plenty\",\n" +
-            "        \"antonym\": \"Lack, scarcity, few\",\n" +
-            "        \"general_sense\": \"overabundance\",\n" +
-            "        \"example_usage\": \"There was a plethora of rubber duckies in the pool.\"\n" +
+            "        \"word\": \"Plethora\",\n" +
+            "        \"synonym\": [\"Excess\", \"plenty\"],\n" +
+            "        \"antonym\": [\"Lack\", \"scarcity\", \"few\"],\n" +
+            "        \"general_sense\": [\"overabundance\"],\n" +
+            "        \"example_usage\": [\"There was a plethora of rubber duckies in the pool.\"\n]" +
             "    }"));
+        testCards.add(Document.parse("{\n" +
+            "        \"_id\": {\n" +
+            "            \"$oid\": \"59dac7b147c9429bff9ba9bc\"\n" +
+            "        },\n" +
+            "        \"word\": \"puckish\", \n" +
+            "        \"synonym\": [\"mischievious\"],\n" +
+            "        \"antonym\": [\"grim\"],\n" +
+            "        \"general_sense\": [\"tending to or exhibiting reckless playfulness\"],\n" +
+            "        \"example_usage\": [\"The puckish boys loved practical jokes.\"\n]" +
+            "    }"));
+
+
 
         cardDocuments.insertMany(testCards);
         cardController = new CardController(db);
@@ -169,11 +180,22 @@ public class CardControllerSpec {
         return arrayReader.decode(reader, DecoderContext.builder().build());
     }
 
+
+
     public List<String> getStringsFromBsonArray(BsonArray docs, String field) {
         return docs.stream()
             .map(x -> x.asDocument().getString(field).getValue())
             .sorted()
             .collect(Collectors.toList());
+    }
+
+
+    @Test
+    public void testDeckSetUp() {
+        String jsonResult = deckController.getDeck(testDeckId.toHexString());
+        Document deck = Document.parse(jsonResult);
+        ArrayList<Document> cards = deck.get("cards", ArrayList.class);
+        assertEquals("Should be 3 cards in the deck", 3, cards.size());
     }
 
     @Test
@@ -182,9 +204,9 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora","puckish");
         assertEquals("Words should match", expectedWords, words);
     }
 
@@ -197,25 +219,33 @@ public class CardControllerSpec {
 
     @Test
     public void addNewCard() {
-        cardController.addNewCard(testDeckId.toHexString(), "Cool", "rad", "bogus",
-            "something that is radical and stuff", "Todd is cool as heck");
+        String[] synonym = {"rad", "slick"};
+        String[] antonym = {"bogus"};
+        String[] general_sense = {"something that is radical and stuff", "really slick my dude"};
+        String[] example_usage = {"Todd is cool as heck", "Todd is cool as ice", "Todd is the coolest dude around"};
+        cardController.addNewCard(testDeckId.toHexString(), "Cool", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 cards", 4, docs.size());
+        assertEquals("Should be 5 cards", 5, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Cool", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Cool", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
-        // assertEquals("words should match", Arrays.asList("Aesthetic reading", "Alliteration", "Pletora", "Cool"),cards.stream().map(x -> x.getString("word")).collect(Collectors.toList()));
     }
+
+
 
     @Test
     public void addToDeck() {
-        cardController.addNewCard(testDeckId.toHexString(), "Sweet", "cool", "lame",
-            "something that is neat and stuff", "Angular is sweet");
-        Map<String, String[]> emptyMap = new HashMap<>();
+        String[] synonym = {"basically", "essentially"};
+        String[] antonym = {"absolutely"};
+        String[] general_sense = {"near completion"};
+        String[] example_usage = {"this is virtually done"};
+        cardController.addNewCard(testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
+
+
         String jsonResult = deckController.getDeck(testDeckId.toHexString());
         Document deck = Document.parse(jsonResult);
         ArrayList<Document> cards = deck.get("cards", ArrayList.class);
@@ -229,9 +259,9 @@ public class CardControllerSpec {
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
@@ -242,16 +272,21 @@ public class CardControllerSpec {
     }
 
     @Test
-    public void tryAddWithEmptyStrings() {
-        cardController.addNewCard("", "", "", "", "", "");
+    public void tryAddWithEmptyFields() {
+        String[] synonym = {};
+        String[] antonym = {};
+        String[] general_sense = {};
+        String[] example_usage = {};
+        cardController.addNewCard("", "", synonym, antonym, general_sense, example_usage);
+
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
@@ -263,15 +298,19 @@ public class CardControllerSpec {
 
     @Test
     public void tryAddWithOneEmptyStrings() {
-        cardController.addNewCard("deckID", "", "synonym", "antonym", "general", "example");
+        String[] synonym = {"rad", "slick"};
+        String[] antonym = {"bogus"};
+        String[] general_sense = {"something that is radical and stuff", "really slick my dude"};
+        String[] example_usage = {"Todd is cool as heck", "Todd is cool as ice", "Todd is the coolest dude around"};
+        cardController.addNewCard("deckID", "", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 3 cards", 3, docs.size());
+        assertEquals("Should be 4 cards", 4, docs.size());
         List<String> words = getStringsFromBsonArray(docs, "word");
-        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Alliteration", "Pletora");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
         assertEquals("Words should match", expectedWords, words);
 
         // Map<String, String[]> emptyMap = new HashMap<>();
