@@ -19,18 +19,25 @@ export class NewCardDialogComponent implements OnInit {
     newCardAntonym: string;
     newCardGeneral: string;
     newCardExample: string;
+    newCardSynonyms: string[] = [];
+    newCardAntonyms: string[] = [];
+    newCardGenerals: string[] = [];
+    newCardExamples: string[] = [];
 
   ngOnInit() {
   }
 
     public addNewCard(): void {
-
+        this.newCardSynonyms.push(this.newCardSynonym);
+        this.newCardAntonyms.push(this.newCardAntonym);
+        this.newCardGenerals.push(this.newCardGeneral);
+        this.newCardExamples.push(this.newCardExample);
         this.deckService.addNewCard(this.data.deckId,
             this.newCardWord,
-            this.newCardSynonym,
-            this.newCardAntonym,
-            this.newCardGeneral,
-            this.newCardExample).subscribe(
+            this.newCardSynonyms,
+            this.newCardAntonyms,
+            this.newCardGenerals,
+            this.newCardExamples).subscribe(
             succeeded => {
                 //this.cardAddSuccess = true;
                 this.matDialogRef.close(succeeded);
@@ -45,6 +52,11 @@ export class NewCardDialogComponent implements OnInit {
                     duration: 2000,
                 });
             });
+
+        /*this.newCardSynonyms = [];
+        this.newCardAntonyms = [];
+        this.newCardGenerals = [];
+        this.newCardExamples = [];asfasasdf*/
     }
 
 }

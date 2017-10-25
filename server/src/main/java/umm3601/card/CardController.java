@@ -1,6 +1,7 @@
 package umm3601.card;
 
 import com.google.gson.Gson;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.AggregateIterable;
@@ -112,13 +113,14 @@ public class CardController {
             {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
+                    System.out.println(dbO);
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
 
-                    String[] synonym = retrieveHints(dbO,"synonym");
-                    String[] antonym = retrieveHints(dbO, "antonym");
-                    String[] general_sense = retrieveHints(dbO,"general_sense");
-                    String[] example_usage = retrieveHints(dbO, "example_usage");
+                    BasicDBList synonym = retrieveHints(dbO,"synonym");
+                    BasicDBList antonym = retrieveHints(dbO, "antonym");
+                    BasicDBList general_sense = retrieveHints(dbO,"general_sense");
+                    BasicDBList example_usage = retrieveHints(dbO, "example_usage");
 
 
                     Document newCard = addNewCard(deckID, word, synonym, antonym, general_sense, example_usage);
@@ -155,25 +157,25 @@ public class CardController {
 
     }
 
-    public String[] retrieveHints(BasicDBObject dbO,String key){
-        try {
-            String[] hints = (String[]) dbO.get(key);
+    public BasicDBList retrieveHints(BasicDBObject dbO, String key){
+        //try {
+            BasicDBList hints = (BasicDBList) dbO.get(key);
             return hints;
-        }
-        catch (ClassCastException e){
+        //}
+        /*catch (ClassCastException e){
             System.err.println("Received an incorrect object type.");
             return null;
-        }
+        }*/
 
     }
 
 
 
-    public Document addNewCard(String deckID, String word, String[] synonym, String[] antonym, String[] general_sense, String[] example_usage){
+    public Document addNewCard(String deckID, String word, BasicDBList synonym, BasicDBList antonym, BasicDBList general_sense, BasicDBList example_usage){
         if (deckID == null || word == null || synonym == null || antonym == null || general_sense == null || example_usage == null) {
             return null;
         }
-        if (deckID.equals("") || word.equals("") || synonym[0].equals("") || antonym[0].equals("") || general_sense[0].equals("") || example_usage[0].equals("")) {
+        if (deckID.equals("") || word.equals("") || synonym.get(0).equals("") || antonym.get(0).equals("") || general_sense.get(0).equals("") || example_usage.get(0).equals("")) {
             return null;
         }
         Document newCard = new Document();
@@ -181,19 +183,11 @@ public class CardController {
 
         newCard.append("_id", newID);
         newCard.append("word", word);
+        newCard.append("synonym",synonym);
+        newCard.append("antonym",antonym);
+        newCard.append("general_sense",general_sense);
+        newCard.append("example_usage",example_usage);
 
-        for(int i = 0; i < synonym.length;i++){
-            newCard.append("synonym", synonym[i]);
-        }
-        for(int i = 0; i < antonym.length;i++){
-            newCard.append("antonym", antonym[i]);
-        }
-        for(int i = 0; i < general_sense.length;i++){
-            newCard.append("general_sense", general_sense[i]);
-        }
-        for(int i = 0; i < example_usage.length;i++){
-            newCard.append("example_usage", example_usage[i]);
-        }
 
         try{
             cardCollection.insertOne(newCard);

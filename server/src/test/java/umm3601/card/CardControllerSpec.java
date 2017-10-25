@@ -1,5 +1,6 @@
 package umm3601.card;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -219,10 +220,19 @@ public class CardControllerSpec {
 
     @Test
     public void addNewCard() {
-        String[] synonym = {"rad", "slick"};
-        String[] antonym = {"bogus"};
-        String[] general_sense = {"something that is radical and stuff", "really slick my dude"};
-        String[] example_usage = {"Todd is cool as heck", "Todd is cool as ice", "Todd is the coolest dude around"};
+        BasicDBList synonym = new BasicDBList();
+        synonym.add("rad");
+        synonym.add("slick");
+        BasicDBList antonym = new BasicDBList();
+        antonym.add("bogus");
+        BasicDBList general_sense = new BasicDBList();
+        general_sense.add("something that is radical and stuff");
+        general_sense.add("really slick my dude");
+        BasicDBList example_usage = new BasicDBList();
+        example_usage.add("Todd is cool as heck");
+        example_usage.add("Todd is cool as ice");
+        example_usage.add("Todd is the coolest dude around");
+
         cardController.addNewCard(testDeckId.toHexString(), "Cool", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
@@ -239,10 +249,18 @@ public class CardControllerSpec {
 
     @Test
     public void addToDeck() {
-        String[] synonym = {"basically", "essentially"};
-        String[] antonym = {"absolutely"};
-        String[] general_sense = {"near completion"};
-        String[] example_usage = {"this is virtually done"};
+        BasicDBList synonym = new BasicDBList();
+        BasicDBList antonym = new BasicDBList();
+        BasicDBList general_sense = new BasicDBList();
+        BasicDBList example_usage = new BasicDBList();
+        synonym.add("basically");
+        synonym.add("essentially");
+        antonym.add("absolutely");
+        general_sense.add("near completion");
+        general_sense.add("review/QA");
+        example_usage.add("This is virtually done");
+
+
         cardController.addNewCard(testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
 
 
@@ -273,10 +291,10 @@ public class CardControllerSpec {
 
     @Test
     public void tryAddWithEmptyFields() {
-        String[] synonym = {};
-        String[] antonym = {};
-        String[] general_sense = {};
-        String[] example_usage = {};
+        BasicDBList synonym = new BasicDBList();
+        BasicDBList antonym = new BasicDBList();
+        BasicDBList general_sense = new BasicDBList();
+        BasicDBList example_usage = new BasicDBList();
         cardController.addNewCard("", "", synonym, antonym, general_sense, example_usage);
 
 
@@ -298,10 +316,18 @@ public class CardControllerSpec {
 
     @Test
     public void tryAddWithOneEmptyStrings() {
-        String[] synonym = {"rad", "slick"};
-        String[] antonym = {"bogus"};
-        String[] general_sense = {"something that is radical and stuff", "really slick my dude"};
-        String[] example_usage = {"Todd is cool as heck", "Todd is cool as ice", "Todd is the coolest dude around"};
+        BasicDBList synonym = new BasicDBList();
+        synonym.add("rad");
+        synonym.add("slick");
+        BasicDBList antonym = new BasicDBList();
+        antonym.add("bogus");
+        BasicDBList general_sense = new BasicDBList();
+        general_sense.add("something that is radical and stuff");
+        general_sense.add("really slick my dude");
+        BasicDBList example_usage = new BasicDBList();
+        example_usage.add("Todd is cool as heck");
+        example_usage.add("Todd is cool as ice");
+        example_usage.add("Todd is the coolest dude around");
         cardController.addNewCard("deckID", "", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
