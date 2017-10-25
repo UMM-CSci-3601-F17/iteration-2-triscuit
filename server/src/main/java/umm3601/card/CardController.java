@@ -112,6 +112,7 @@ public class CardController {
             {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
+                    System.out.println(dbO);
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
 
