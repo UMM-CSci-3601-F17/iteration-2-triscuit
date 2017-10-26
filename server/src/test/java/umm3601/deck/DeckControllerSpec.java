@@ -85,8 +85,11 @@ public class DeckControllerSpec {
             "            {\n" +
             "                \"$oid\": \"59dac7b147c9429bff9ba9c0\"\n" +
             "            }\n" +
-            "        ]\n" +
+            "        ],\n" +
+                "    \"password\": \"null\",\n" +
             "    }"
+
+
         ));
 
         testDecks.add(Document.parse("{\n" +
@@ -101,7 +104,8 @@ public class DeckControllerSpec {
             "            {\n" +
             "                \"$oid\": \"59dac7b147c9429bff9ba9b5\"\n" +
             "            }\n" +
-            "        ]\n" +
+            "        ],\n" +
+            "    \"password\": \"password\",\n" +
             "    }"
         ));
 
@@ -217,7 +221,7 @@ public class DeckControllerSpec {
 
     @Test
     public void addOneDeck() {
-        Document addResult = deckController.addNewDeck("test deck 4");
+        Document addResult = deckController.addNewDeck("test deck 4", null);
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = deckController.getDecks(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
@@ -230,7 +234,7 @@ public class DeckControllerSpec {
 
     @Test
     public void addDeckNoName() {
-        Document addResult = deckController.addNewDeck("");
+        Document addResult = deckController.addNewDeck("", null);
         assertNull("result should be null", addResult);
 
         Map<String, String[]> emptyMap = new HashMap<>();
@@ -245,9 +249,9 @@ public class DeckControllerSpec {
 
     @Test
     public void addThreeDecks() {
-        deckController.addNewDeck("test deck 4");
-        deckController.addNewDeck("test deck 5");
-        deckController.addNewDeck("test deck 6");
+        deckController.addNewDeck("test deck 4", null);
+        deckController.addNewDeck("test deck 5", null);
+        deckController.addNewDeck("test deck 6", null);
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = deckController.getDecks(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
@@ -257,7 +261,7 @@ public class DeckControllerSpec {
 
     @Test
     public void checkNewDReturnedDeck() {
-        Document addResult = deckController.addNewDeck("test deck 4");
+        Document addResult = deckController.addNewDeck("test deck 4", null);
         String jsonResult = deckController.getDeck(addResult.getObjectId("_id").toHexString());
         Document testDeck = Document.parse(jsonResult);
         assertEquals("Decks should match", addResult, testDeck);
