@@ -33,7 +33,8 @@ describe('DeckComponent', () => {
                       general_sense: "test general_sense",
                       example_usage: "test example_usage",
                   }
-              ]
+              ],
+              password: "really_good_password"
           })
       };
 
@@ -61,6 +62,7 @@ describe('DeckComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
   it('should load a deck', () => {
 
       expect(component.deck).toEqual({
@@ -76,7 +78,10 @@ describe('DeckComponent', () => {
                   general_sense: "test general_sense",
                   example_usage: "test example_usage",
               }
-          ]
+          ],
+          password: "really_good_password"
       });
-  })
+  });
+
+
 });

@@ -11,12 +11,16 @@ export class DeckListPage {
         return title;
     }
 
-
     getElementsByClass(htmlClass: string){
         return element.all(by.className(htmlClass));
     }
+
     getAllDecks(){
         return this.getElementsByClass('deck');
+    }
+
+    getFirstDeck(){
+        return this.getAllDecks().first();
     }
 
     getAllDeckNames() {
@@ -37,9 +41,12 @@ export class DeckListPage {
         }
     }
 
-    addDeck(name: string) {
+    addDeck(name: string, password: string) {
         this.clickButton('deckDialog');
         this.typeInput('deckName', name);
+        if(password != null) {
+            this.typeInput('deckPassword', password);
+        }
         this.clickButton('new-deck-submit');
     }
 
