@@ -1,6 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {DeckService} from "../deck/deck.service";
 import {MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from "@angular/material";
+import {getComponent} from "@angular/core/src/linker/component_factory_resolver";
 
 @Component({
   selector: 'app-new-card-dialog',
@@ -12,24 +13,41 @@ export class NewCardDialogComponent implements OnInit {
   constructor(public deckService : DeckService,
               public matDialogRef : MatDialogRef<NewCardDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { deckId : string },
-              public snackBar: MatSnackBar) { }
+              public snackBar: MatSnackBar) {
+
+  }
 
     newCardWord: string;
     newCardSynonym: string;
     newCardAntonym: string;
     newCardGeneral: string;
     newCardExample: string;
-    bool: boolean = false;
+    boolSyn: boolean = true;
+    boolAnt: boolean = true;
+    boolGen: boolean = true;
+    boolEx: boolean = true;
     newCardSynonyms: string[] = [];
     newCardAntonyms: string[] = [];
     newCardGenerals: string[] = [];
     newCardExamples: string[] = [];
 
   ngOnInit() {
+   //ViewChild('
   }
 
-    public isEmpty(hints:string[]): boolean {
-      return hints.length == 0;
+    public isEmpty(hint:string): void{
+        if(hint==='syn'){
+            this.boolSyn = (this.newCardSynonyms.length==0);
+        }
+        if(hint==='ant'){
+            this.boolAnt = (this.newCardAntonyms.length==0);
+        }
+        if(hint==='gen'){
+            this.boolGen = (this.newCardGenerals.length==0);
+        }
+        if(hint==='ex'){
+            this.boolEx = (this.newCardExamples.length==0);
+        }
     }
 
     public pushNewCard(hint:string): void{

@@ -1,28 +1,33 @@
 <h2 mat-dialog-title>Add New Card</h2>
 <form #newCardForm="ngForm">
+
     <mat-dialog-content layout="column" class="add-card-form-fields">
         <mat-form-field>
             <input matInput required id="wordInput" #input type="text" placeholder="Word" [(ngModel)]="newCardWord" name="newCardWord">
         </mat-form-field>
+
         <mat-form-field>
-            <input matInput required id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
+            <input matInput [required]="boolSyn" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
         </mat-form-field>
-        <button id="new-syn" (click)="pushNewCard('syn')">+</button>
+        <button id="new-syn" matTooltip="Add another hint" (click)="pushNewCard('syn');isEmpty('syn')">+</button>
+
+
         <mat-form-field>
-            <input matInput required id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
+            <input matInput [required]="boolAnt" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
         </mat-form-field>
-        <button id="new-ant" (click)="pushNewCard('ant')">+</button>
+        <button id="new-ant" matTooltip="Add another hint" (click)="pushNewCard('ant');isEmpty('ant')">+</button>
         <mat-form-field>
-            <input matInput required id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
+            <input matInput [required]="boolGen" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
         </mat-form-field>
-        <button id="new-gen" (click)="pushNewCard('gen')">+</button>
+        <button id="new-gen" matTooltip="Add another hint" (click)="pushNewCard('gen');isEmpty('gen')">+</button>
         <mat-form-field>
-            <input matInput required id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
+            <input matInput [required]="boolEx" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
         </mat-form-field>
-        <button id="new-ex" (click)="pushNewCard('ex')">+</button>
+        <button id="new-ex" matTooltip="Add another hint" (click)="pushNewCard('ex');isEmpty('ex')">+</button>
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-raised-button id="new-card-submit" (click)="addNewCard()" color="primary" #input type="button" [disabled]="!newCardForm.form.valid"  type="submit">Add Card</button>
         <button mat-button mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
+
 </form>
