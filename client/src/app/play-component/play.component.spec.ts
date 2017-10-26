@@ -51,7 +51,8 @@ describe('PlayComponent', () => {
                       general_sense: "test general_sense",
                       example_usage: "test example_usage",
                   }
-              ]
+              ],
+              password: null
           })
       };
 

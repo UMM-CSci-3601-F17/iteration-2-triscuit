@@ -83,5 +83,17 @@ describe('DeckComponent', () => {
       });
   });
 
+  it('should check password', () => {
+      expect(component.deck.password).toEqual("really_good_password");
+      component.enteredPassword = "really_good_password";
+      component.checkPassword();
+      expect(component.correctPassword).toEqual(true);
+  });
 
+    it('should check password and return false', () => {
+        expect(component.deck.password).toEqual("really_good_password");
+        component.enteredPassword = "really_bad_password";
+        component.checkPassword();
+        expect(component.correctPassword).toEqual(false);
+    });
 });
