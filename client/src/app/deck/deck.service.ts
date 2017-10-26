@@ -39,10 +39,11 @@ export class DeckService {
       return this.http.post(this.cardUrl + "/add", body).map(res => res.json());
   }
 
-  public addNewDeck(name: string) {
-      let response = this.http.post(this.deckUrl + "/add", {name: name}).map(res => res.json());
+  public addNewDeck(name: string, password: string) {
+      let response = this.http.post(this.deckUrl + "/add", {name: name, password: password}).map(res => res.json());
       return response;
   }
+
 
 
 

@@ -3,7 +3,7 @@ import {DeckService} from "../deck/deck.service";
 import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {NewCardDialogComponent} from "../new-card-dialog/new-card-dialog.component";
-import {MdDialog} from "@angular/material";
+import {MdDialog, MatSnackBar} from "@angular/material";
 
 
 @Component({
@@ -15,11 +15,29 @@ export class DeckComponent implements OnInit {
 
     id : string;
     deck : Deck;
+    correctPassword : boolean;
+    enteredPassword : string;
 
 
-  constructor(public deckService : DeckService, private route: ActivatedRoute, public dialog : MdDialog) {
+  constructor(public deckService : DeckService,
+              private route: ActivatedRoute,
+              public dialog : MdDialog,
+              public snackBar: MatSnackBar) {
 
 
+  }
+
+  checkPassword() {
+      this.correctPassword = (this.enteredPassword === this.deck.password);
+      if(this.correctPassword === true) {
+          this.snackBar.open("Correct Password!", null, {
+              duration: 2000,
+          });
+      } else {
+          this.snackBar.open("Incorrect Password", null, {
+              duration: 2000,
+          });
+      }
   }
 
   openAddDialog() {
@@ -41,6 +59,7 @@ export class DeckComponent implements OnInit {
           this.deckService.getDeck(this.id).subscribe(
               deck => {
                   this.deck = deck;
+                  this.correctPassword = (this.deck.password === null);
               }
           );
       });

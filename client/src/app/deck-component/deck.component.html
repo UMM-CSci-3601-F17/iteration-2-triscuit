@@ -1,6 +1,9 @@
 <div layout-gt-sm="row">
     <div flex-gt-xs="60" flex-offset-gt-xs="20" flex-xs="90" flex-offset-xs="5" *ngIf="this.deck && this.deck.cards">
         <h2 id="deck-header">{{ this.deck.name }}</h2>
+        <h4 id="password-header" *ngIf="!this.correctPassword">To add cards, please enter the password</h4>
+        <input id="deckPassword" *ngIf="!this.correctPassword" #input type="password" placeholder="Password" [(ngModel)]="enteredPassword" name="enteredPassword">
+        <button class="enter" id="enter-button" mat-raised-button color="primary" *ngIf="!this.correctPassword" [disabled]="this.correctPassword || this.deck.password == null" (click)="checkPassword();">Enter</button>
             <td-message id="no-cards-message" *ngIf="this.deck.cards.length == 0" label="No Cards" sublabel="This deck is empty, tap + to add cards.">
             </td-message>
         <app-card class="deck-card" *ngFor="let card of this.deck.cards" [card]="card"></app-card>
@@ -8,6 +11,7 @@
 </div>
 
 
-<button mat-fab id="cardDialog" class="deck-fab" matTooltip="Add Card" matTooltipPosition="left" (click)="this.openAddDialog()">
-    <mat-icon class="md-24" aria-label="Add Card">add</mat-icon>
+<button mat-fab id="cardDialog" class="deck-fab" matTooltip="Add Card" matTooltipPosition="left" (click)="this.openAddDialog()"
+        [disabled]="!this.correctPassword">
+    <mat-icon class="md-24" aria-label="Add Card" >add</mat-icon>
 </button>

@@ -47,7 +47,8 @@ When **build.sh** is run the script **.sage_run.sh** is copied to ~/**sage.sh** 
 will run your project in production mode. The API_URL within the _environment.prod.ts_ should reflect the url to get to your server e.g. 
 ``http://localhost:4567`` or ``http://acooldomainname.com``
 
-:exclamation: Pro-tip: IntelliJ comes with a nice view to see the mongo databases setup.
+:exclamation: Pro-tip: IntelliJ comes wit# CSCI 3601 Production Template Fall 2017
+h a nice view to see the mongo databases setup.
 To access this click on File -> Settings -> Plugins, type Mongo and make sure the Mongo Plugin is installed.
 Now head to View -> Tool Windows -> Mongo Explorer. Then use the tool icon to add configuration.
 Once prompted type for Path to Mongo Shell: _"/usr/bin/mongo"_

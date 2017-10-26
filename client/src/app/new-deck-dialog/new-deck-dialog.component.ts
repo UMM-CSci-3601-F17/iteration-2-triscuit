@@ -17,9 +17,10 @@ export class NewDeckDialogComponent implements OnInit {
   }
 
   newDeckName: string;
+    newDeckPassword: string;
 
     public addNewDeck(): void {
-        this.deckService.addNewDeck(this.newDeckName).subscribe(
+        this.deckService.addNewDeck(this.newDeckName, this.newDeckPassword).subscribe(
             succeeded => {
                 this.deckService.decks.push(succeeded);
                 this.matDialogRef.close();

@@ -5,5 +5,6 @@ export interface Deck {
         $oid: string
     },
     name: string,
-    cards: Card[]
+    cards: Card[],
+    password: string
 }

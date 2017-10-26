@@ -50,7 +50,8 @@
             {
                 "$oid": "59dac7b147c9429bff9ba9c0"
             }
-        ]
+        ],
+        "password": null
     },
     {
         "_id": {
@@ -67,6 +68,7 @@
             {
                 "$oid": "59dac7b147c9429bff9ba9b5"
             }
-        ]
+        ],
+        "password": "password"
     }
 ]
