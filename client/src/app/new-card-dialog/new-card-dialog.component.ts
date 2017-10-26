@@ -19,6 +19,7 @@ export class NewCardDialogComponent implements OnInit {
     newCardAntonym: string;
     newCardGeneral: string;
     newCardExample: string;
+    bool: boolean = false;
     newCardSynonyms: string[] = [];
     newCardAntonyms: string[] = [];
     newCardGenerals: string[] = [];
@@ -26,6 +27,29 @@ export class NewCardDialogComponent implements OnInit {
 
   ngOnInit() {
   }
+
+    public isEmpty(hints:string[]): boolean {
+      return hints.length == 0;
+    }
+
+    public pushNewCard(hint:string): void{
+        if(hint==='syn'){
+            this.newCardSynonyms.push(this.newCardSynonym);
+            this.newCardSynonym = "";
+        }
+        if(hint==='ant'){
+            this.newCardAntonyms.push(this.newCardAntonym);
+            this.newCardAntonym = "";
+        }
+        if(hint==='gen'){
+            this.newCardGenerals.push(this.newCardGeneral);
+            this.newCardGeneral = "";
+        }
+        if(hint==='ex'){
+            this.newCardExamples.push(this.newCardExample);
+            this.newCardExample = "";
+        }
+    }
 
     public addNewCard(): void {
         this.newCardSynonyms.push(this.newCardSynonym);
@@ -53,10 +77,7 @@ export class NewCardDialogComponent implements OnInit {
                 });
             });
 
-        /*this.newCardSynonyms = [];
-        this.newCardAntonyms = [];
-        this.newCardGenerals = [];
-        this.newCardExamples = [];asfasasdf*/
+
     }
 
 }
