@@ -18,14 +18,10 @@ export class NewCardDialogComponent implements OnInit {
   }
 
     newCardWord: string;
-    newCardSynonym: string;
-    newCardAntonym: string;
-    newCardGeneral: string;
-    newCardExample: string;
-    boolSyn: boolean = true;
-    boolAnt: boolean = true;
-    boolGen: boolean = true;
-    boolEx: boolean = true;
+    newCardSynonym: string = "";
+    newCardAntonym: string = "";
+    newCardGeneral: string = "";
+    newCardExample: string = "";
     newCardSynonyms: string[] = [];
     newCardAntonyms: string[] = [];
     newCardGenerals: string[] = [];
@@ -35,20 +31,7 @@ export class NewCardDialogComponent implements OnInit {
    //ViewChild('
   }
 
-    public isEmpty(hint:string): void{
-        if(hint==='syn'){
-            this.boolSyn = (this.newCardSynonyms.length==0);
-        }
-        if(hint==='ant'){
-            this.boolAnt = (this.newCardAntonyms.length==0);
-        }
-        if(hint==='gen'){
-            this.boolGen = (this.newCardGenerals.length==0);
-        }
-        if(hint==='ex'){
-            this.boolEx = (this.newCardExamples.length==0);
-        }
-    }
+
 
     public pushNewCard(hint:string): void{
         if(hint==='syn'){

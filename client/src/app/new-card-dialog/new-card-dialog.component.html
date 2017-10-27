@@ -7,23 +7,23 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput [required]="boolSyn" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
+            <input matInput [required]="newCardSynonyms.length==0" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
         </mat-form-field>
-        <button id="new-syn" matTooltip="Add another hint" (click)="pushNewCard('syn');isEmpty('syn')">+</button>
+        <button id="new-syn" [disabled]="newCardSynonym==''" matTooltip="Add another hint" (click)="pushNewCard('syn')">+</button>
 
 
         <mat-form-field>
-            <input matInput [required]="boolAnt" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
+            <input matInput [required]="newCardAntonyms.length==0" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
         </mat-form-field>
-        <button id="new-ant" matTooltip="Add another hint" (click)="pushNewCard('ant');isEmpty('ant')">+</button>
+        <button id="new-ant" [disabled]="newCardAntonym==''" matTooltip="Add another hint" (click)="pushNewCard('ant')">+</button>
         <mat-form-field>
-            <input matInput [required]="boolGen" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
+            <input matInput [required]="newCardGenerals.length==0" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
         </mat-form-field>
-        <button id="new-gen" matTooltip="Add another hint" (click)="pushNewCard('gen');isEmpty('gen')">+</button>
+        <button id="new-gen" [disabled]="newCardGeneral==''" matTooltip="Add another hint" (click)="pushNewCard('gen')">+</button>
         <mat-form-field>
-            <input matInput [required]="boolEx" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
+            <input matInput [required]="newCardExamples.length==0" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
         </mat-form-field>
-        <button id="new-ex" matTooltip="Add another hint" (click)="pushNewCard('ex');isEmpty('ex')">+</button>
+        <button id="new-ex" [disabled]="newCardExample==''" matTooltip="Add another hint" (click)="pushNewCard('ex')">+</button>
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-raised-button id="new-card-submit" (click)="addNewCard()" color="primary" #input type="button" [disabled]="!newCardForm.form.valid"  type="submit">Add Card</button>
