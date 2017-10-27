@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {NewCardDialogComponent} from "../new-card-dialog/new-card-dialog.component";
 import {MdDialog, MatSnackBar} from "@angular/material";
+import sha256, { Hash, HMAC } from "fast-sha256";
 
 
 @Component({
@@ -28,7 +29,7 @@ export class DeckComponent implements OnInit {
   }
 
   checkPassword() {
-      this.correctPassword = (this.enteredPassword === this.deck.password);
+      this.correctPassword = (sha256(this.enteredPassword) === this.deck.password);
       if(this.correctPassword === true) {
           this.snackBar.open("Correct Password!", null, {
               duration: 2000,
