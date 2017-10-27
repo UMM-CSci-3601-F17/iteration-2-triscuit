@@ -62,7 +62,7 @@ export class NewCardDialogComponent implements OnInit {
       if(this.newCardExample!='')
         this.newCardExamples.push(this.newCardExample);
 
-      
+
         this.deckService.addNewCard(this.data.deckId,
             this.newCardWord,
             this.newCardSynonyms,
