@@ -53,10 +53,16 @@ export class NewCardDialogComponent implements OnInit {
     }
 
     public addNewCard(): void {
+      if(this.newCardSynonym!='')
         this.newCardSynonyms.push(this.newCardSynonym);
+      if(this.newCardAntonym!='')
         this.newCardAntonyms.push(this.newCardAntonym);
+      if(this.newCardGeneral)
         this.newCardGenerals.push(this.newCardGeneral);
+      if(this.newCardExample!='')
         this.newCardExamples.push(this.newCardExample);
+
+      
         this.deckService.addNewCard(this.data.deckId,
             this.newCardWord,
             this.newCardSynonyms,
