@@ -13,6 +13,10 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
@@ -144,10 +148,11 @@ public class DeckController {
         Document newDeck = new Document();
         ObjectId newID = new ObjectId();
         System.out.println(newID.toString());
+
         newDeck.append("_id", newID);
         newDeck.append("name", name);
         newDeck.append("cards", Collections.emptyList());
-        newDeck.append("password", password);
+        newDeck.append("password", SHA(password));
         try{
             deckCollection.insertOne(newDeck);
         }
@@ -157,6 +162,35 @@ public class DeckController {
         }
 
         return newDeck;
+    }
+
+    public static String SHA(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes("UTF-8"));
+            byte[] hash = md.digest();
+            StringBuffer hexString = new StringBuffer();
+
+            for(int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1)
+                    hexString.append('0');
+                hexString.append(hex);
+            }
+
+            password = hexString.toString();
+
+        }
+
+        catch(NoSuchAlgorithmException e) {
+            System.out.println("NoSuchAlgorithmException");
+        }
+
+        catch (UnsupportedEncodingException e) {
+            System.out.println("UnsupportedEncodingException");
+        }
+
+        return password;
     }
 
 
