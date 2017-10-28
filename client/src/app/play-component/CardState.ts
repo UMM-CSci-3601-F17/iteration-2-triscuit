@@ -1,4 +1,5 @@
-
+import {Component, Input, OnInit} from '@angular/core';
+import {Card} from "../card/card";
 
 
 
@@ -6,6 +7,7 @@ export class CardState {
     public cardPoints:number;
     public cardHints:number[];
     public isComplete: boolean;
+    public isRandomized: boolean;
     public selected: number;
 
 
@@ -13,6 +15,7 @@ export class CardState {
         this.cardPoints = 5;
         this.cardHints = [1,2,3,4];
         this.isComplete = false;
+        this.isRandomized = false;
         this.selected = 0;
     }
 
@@ -32,6 +35,7 @@ export class CardState {
     public isDone(): void {
         this.isComplete = true;
     }
+
 
 
 }
