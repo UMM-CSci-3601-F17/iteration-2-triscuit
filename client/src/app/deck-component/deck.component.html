@@ -12,6 +12,6 @@
 
 
 <button mat-fab id="cardDialog" class="deck-fab" matTooltip="Add Card" matTooltipPosition="left" (click)="this.openAddDialog()"
-        >
+        [disabled]="!this.correctPassword">
     <mat-icon class="md-24" aria-label="Add Card" >add</mat-icon>
 </button>

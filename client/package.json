@@ -31,7 +31,7 @@
         "ng2-page-slider": "^0.10.1",
         "rxjs": "^5.4.2",
         "zone.js": "^0.8.14",
-        "fast-sha256": "^1.0.0"
+        "sha256": "^0.2.0"
     },
     "devDependencies": {
         "@angular/cli": "1.4.5",

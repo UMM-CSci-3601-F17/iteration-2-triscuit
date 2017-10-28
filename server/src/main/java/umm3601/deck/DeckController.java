@@ -154,18 +154,31 @@ public class DeckController {
         newDeck.append("cards", Collections.emptyList());
         if(password == null) {
             newDeck.append("password", password);
+
+            try{
+                deckCollection.insertOne(newDeck);
+            }
+            catch(MongoException me){
+                me.printStackTrace();
+                return null;
+            }
+
+            return newDeck;
+
         } else {
             newDeck.append("password", SHA(password));
-        }
-        try{
-            deckCollection.insertOne(newDeck);
-        }
-        catch(MongoException me){
-            me.printStackTrace();
-            return null;
+
+            try {
+                deckCollection.insertOne(newDeck);
+            } catch (MongoException me) {
+                me.printStackTrace();
+                return null;
+            }
+
+            return newDeck;
+
         }
 
-        return newDeck;
     }
 
     public static String SHA(String password) {
