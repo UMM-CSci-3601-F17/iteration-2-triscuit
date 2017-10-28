@@ -31,6 +31,9 @@ export class DeckService {
       return newDeck;
   }
 
+  // We pass the passwordState to the server to allow the process to be stopped if
+  // the person trying to addCards has not entered in the password
+
   public addNewCard(passwordState: boolean, deckID: string, word: string, synonym: string[], antonym: string[], general: string[], example: string[]) {
 
       const body = {passwordState:passwordState, deckID:deckID, word:word, synonym:synonym, antonym:antonym, general_sense:general, example_usage:example};

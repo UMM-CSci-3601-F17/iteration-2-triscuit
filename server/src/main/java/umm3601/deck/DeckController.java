@@ -152,6 +152,7 @@ public class DeckController {
         newDeck.append("_id", newID);
         newDeck.append("name", name);
         newDeck.append("cards", Collections.emptyList());
+        // Have to check if password is null or else it will error out
         if(password == null) {
             newDeck.append("password", password);
 
@@ -181,6 +182,11 @@ public class DeckController {
 
     }
 
+    /**
+     *
+     * @param password
+     * @return An SHA256 hash of the password so it can be securely stored in the DB
+     */
     public static String SHA(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

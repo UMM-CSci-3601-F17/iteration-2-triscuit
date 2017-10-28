@@ -4,6 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {NewCardDialogComponent} from "../new-card-dialog/new-card-dialog.component";
 import {MdDialog, MatSnackBar} from "@angular/material";
+// This import can be found at https://www.npmjs.com/package/sha256
+// Allows us to create a SHA256 hash that matches those found in our DB
 import sha256 from "sha256";
 
 

@@ -3,6 +3,8 @@
         <mat-nav-list>
             <a mat-list-item [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>
             <a mat-list-item [routerLink]="['/decks']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>view_list</mat-icon>Decks</a>
+            <!-- This button was added so that people with smaller phone screens can close the side-menu -->
+            <a mat-list-item (click)="layout.close()"><mat-icon>keyboard_backspace</mat-icon>Close</a>
         </mat-nav-list>
     </td-navigation-drawer>
     <td-layout-nav  toolbarTitle="SAGE" navigationRoute="/">

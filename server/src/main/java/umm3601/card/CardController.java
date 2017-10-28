@@ -173,6 +173,8 @@ public class CardController {
 
 
     public Document addNewCard(boolean passwordState, String deckID, String word, BasicDBList synonym, BasicDBList antonym, BasicDBList general_sense, BasicDBList example_usage){
+        // We check the password state here as a way of safeguarding the DB in case someone
+        // gets pass the password protection on the client-side
         if(!passwordState) {
             return null;
         }
