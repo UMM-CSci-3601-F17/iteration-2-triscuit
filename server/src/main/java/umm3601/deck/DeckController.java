@@ -152,7 +152,11 @@ public class DeckController {
         newDeck.append("_id", newID);
         newDeck.append("name", name);
         newDeck.append("cards", Collections.emptyList());
-        newDeck.append("password", SHA(password));
+        if(password == null) {
+            newDeck.append("password", password);
+        } else {
+            newDeck.append("password", SHA(password));
+        }
         try{
             deckCollection.insertOne(newDeck);
         }

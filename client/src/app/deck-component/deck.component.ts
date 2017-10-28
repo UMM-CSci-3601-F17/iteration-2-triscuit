@@ -29,7 +29,7 @@ export class DeckComponent implements OnInit {
   }
 
   checkPassword() {
-      this.correctPassword = (sha256(this.enteredPassword) === this.deck.password);
+      this.correctPassword = (this.enteredPassword === this.deck.password);
       if(this.correctPassword === true) {
           this.snackBar.open("Correct Password!", null, {
               duration: 2000,
@@ -43,7 +43,8 @@ export class DeckComponent implements OnInit {
 
   openAddDialog() {
       let dialogRef = this.dialog.open(NewCardDialogComponent, {
-          data: { deckId: this.id },
+          data: { deckId: this.id, passwordState: this.correctPassword },
+
       });
       dialogRef.afterClosed().subscribe(result => {
           if(result) {
