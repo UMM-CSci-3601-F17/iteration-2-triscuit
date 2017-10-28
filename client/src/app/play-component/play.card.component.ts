@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Card} from "../card/card";
+import {CardState} from "./CardState";
 
 @Component({
     selector: 'play-card',
@@ -18,8 +19,8 @@ export class PlayCardComponent implements OnInit {
     ngOnInit() {
     }
 
-    public getRandom(hints:string[]){
-        
+    public getRandom(hints:string[]):string{
+        return hints[Math.floor(Math.random()*hints.length)];
     }
 
 }
