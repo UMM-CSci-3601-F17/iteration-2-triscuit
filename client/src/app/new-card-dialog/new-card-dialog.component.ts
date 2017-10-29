@@ -1,13 +1,19 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {DeckService} from "../deck/deck.service";
 import {MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from "@angular/material";
+import {TdPulseAnimation} from "@covalent/core";
 import {getComponent} from "@angular/core/src/linker/component_factory_resolver";
 
 @Component({
   selector: 'app-new-card-dialog',
   templateUrl: './new-card-dialog.component.html',
-  styleUrls: ['./new-card-dialog.component.css']
+  styleUrls: ['./new-card-dialog.component.css'],
+    animations: [
+        TdPulseAnimation()
+    ]
 })
+
+
 export class NewCardDialogComponent implements OnInit {
 
   constructor(public deckService : DeckService,
@@ -16,7 +22,7 @@ export class NewCardDialogComponent implements OnInit {
               public snackBar: MatSnackBar) {
 
   }
-
+    pulseState: boolean = false;
     newCardWord: string;
     newCardSynonym: string = "";
     newCardAntonym: string = "";
