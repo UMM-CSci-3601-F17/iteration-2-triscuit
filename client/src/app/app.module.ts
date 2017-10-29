@@ -42,7 +42,7 @@ import {PasswordDialogComponent} from "./password-dialog/password-dialog.compone
         NewCardDialogComponent,
         NewDeckDialogComponent,
         PasswordDialogComponent,
-        PlayComponent
+        PlayComponent,
     ],
     entryComponents: [
         NewCardDialogComponent,

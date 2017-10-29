@@ -4,12 +4,9 @@ import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {NewCardDialogComponent} from "../new-card-dialog/new-card-dialog.component";
 import {MdDialog, MatSnackBar} from "@angular/material";
-// This import can be found at https://www.npmjs.com/package/sha256
+// This import can be found at https://www.npmjs.com/package/sha256-es
 // Allows us to create a SHA256 hash that matches those found in our DB
-import sha256 from "sha256";
-
-
-
+import SHA256 from "sha256-es";
 
 @Component({
   selector: 'app-deck',
@@ -33,7 +30,9 @@ export class DeckComponent implements OnInit {
   }
 
   checkPassword() {
-      this.correctPassword = (sha256(this.enteredPassword) === this.deck.password);
+      this.enteredPassword = SHA256.hash(this.enteredPassword);
+      console.log(this.enteredPassword);
+      this.correctPassword = (this.enteredPassword === this.deck.password);
       if(this.correctPassword === true) {
           this.snackBar.open("Correct Password!", null, {
               duration: 2000,
