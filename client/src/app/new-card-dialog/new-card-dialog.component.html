@@ -11,7 +11,7 @@
             <mat-form-field class="input-field">
                 <input matInput [required]="newCardSynonyms.length==0" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
             </mat-form-field>
-            <button id="new-syn" class="addButton" mat-mini-fab [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardSynonym==''" (click)="pushNewCard('syn')">
+            <button id="new-syn" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardSynonym==''" (click)="pushNewCard('syn')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -19,7 +19,7 @@
         <mat-form-field class="input-field">
             <input matInput [required]="newCardAntonyms.length==0" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
         </mat-form-field>
-        <button id="new-ant" class="addButton" mat-mini-fab [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardAntonym==''" (click)="pushNewCard('ant')">
+        <button id="new-ant" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardAntonym==''" (click)="pushNewCard('ant')">
             <mat-icon>add</mat-icon>
         </button>
         </div>
@@ -27,15 +27,16 @@
         <mat-form-field class="input-field">
             <input matInput [required]="newCardGenerals.length==0" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
         </mat-form-field>
-        <button id="new-gen" class="addButton" mat-mini-fab [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardGeneral==''" (click)="pushNewCard('gen')">
+        <button id="new-gen" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardGeneral==''" (click)="pushNewCard('gen')">
             <mat-icon>add</mat-icon>
         </button>
+
         </div>
         <div class="form-field">
         <mat-form-field class="input-field">
             <input class="input-field" matInput [required]="newCardExamples.length==0" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
         </mat-form-field>
-        <button id="new-ex" class="addButton" mat-mini-fab [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardExample==''" (click)="pushNewCard('ex')">
+        <button id="new-ex" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardExample==''" (click)="pushNewCard('ex')">
             <mat-icon>add</mat-icon>
         </button>
         </div>
