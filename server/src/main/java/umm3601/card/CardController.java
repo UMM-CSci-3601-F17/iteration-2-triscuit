@@ -114,6 +114,7 @@ public class CardController {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
                     System.out.println(dbO);
+                    boolean passwordState = dbO.getBoolean("passwordState");
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
 
@@ -123,7 +124,7 @@ public class CardController {
                     BasicDBList example_usage = retrieveHints(dbO, "example_usage");
 
 
-                    Document newCard = addNewCard(deckID, word, synonym, antonym, general_sense, example_usage);
+                    Document newCard = addNewCard(passwordState, deckID, word, synonym, antonym, general_sense, example_usage);
                     if (newCard != null) {
                         return newCard.toJson();
                     } else {
@@ -171,7 +172,12 @@ public class CardController {
 
 
 
-    public Document addNewCard(String deckID, String word, BasicDBList synonym, BasicDBList antonym, BasicDBList general_sense, BasicDBList example_usage){
+    public Document addNewCard(boolean passwordState, String deckID, String word, BasicDBList synonym, BasicDBList antonym, BasicDBList general_sense, BasicDBList example_usage){
+        // We check the password state here as a way of safeguarding the DB in case someone
+        // gets pass the password protection on the client-side
+        if(!passwordState) {
+            return null;
+        }
         if (deckID == null || word == null || synonym == null || antonym == null || general_sense == null || example_usage == null) {
             return null;
         }

@@ -233,7 +233,7 @@ public class CardControllerSpec {
         example_usage.add("Todd is cool as ice");
         example_usage.add("Todd is the coolest dude around");
 
-        cardController.addNewCard(testDeckId.toHexString(), "Cool", synonym, antonym, general_sense, example_usage);
+        cardController.addNewCard(true, testDeckId.toHexString(), "Cool", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
@@ -261,7 +261,7 @@ public class CardControllerSpec {
         example_usage.add("This is virtually done");
 
 
-        cardController.addNewCard(testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
+        cardController.addNewCard(true, testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
 
 
         String jsonResult = deckController.getDeck(testDeckId.toHexString());
@@ -271,7 +271,7 @@ public class CardControllerSpec {
     }
     @Test
     public void tryAddWithNullParameters() {
-        cardController.addNewCard(null, null, null, null, null, null);
+        cardController.addNewCard(false, null, null, null, null, null, null);
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);
@@ -295,7 +295,7 @@ public class CardControllerSpec {
         BasicDBList antonym = new BasicDBList();
         BasicDBList general_sense = new BasicDBList();
         BasicDBList example_usage = new BasicDBList();
-        cardController.addNewCard("", "", synonym, antonym, general_sense, example_usage);
+        cardController.addNewCard(true, "", "", synonym, antonym, general_sense, example_usage);
 
 
         Map<String, String[]> emptyMap = new HashMap<>();
@@ -328,7 +328,39 @@ public class CardControllerSpec {
         example_usage.add("Todd is cool as heck");
         example_usage.add("Todd is cool as ice");
         example_usage.add("Todd is the coolest dude around");
-        cardController.addNewCard("deckID", "", synonym, antonym, general_sense, example_usage);
+        cardController.addNewCard(true,"deckID", "", synonym, antonym, general_sense, example_usage);
+
+        Map<String, String[]> emptyMap = new HashMap<>();
+        String jsonResult = cardController.getCards(emptyMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        assertEquals("Should be 4 cards", 4, docs.size());
+        List<String> words = getStringsFromBsonArray(docs, "word");
+        List<String> expectedWords = Arrays.asList("Aesthetic reading", "Automaticity", "Plethora", "puckish");
+        assertEquals("Words should match", expectedWords, words);
+
+        // Map<String, String[]> emptyMap = new HashMap<>();
+        String jsonResult2 = deckController.getDeck(testDeckId.toHexString());
+        Document deck = Document.parse(jsonResult2);
+        ArrayList<Document> cards = deck.get("cards", ArrayList.class);
+        assertEquals("Should be 3 cards in the deck", 3, cards.size());
+    }
+
+    @Test
+    public void tryAddWithoutGettingCorrectPassword() {
+        BasicDBList synonym = new BasicDBList();
+        synonym.add("rad");
+        synonym.add("slick");
+        BasicDBList antonym = new BasicDBList();
+        antonym.add("bogus");
+        BasicDBList general_sense = new BasicDBList();
+        general_sense.add("something that is radical and stuff");
+        general_sense.add("really slick my dude");
+        BasicDBList example_usage = new BasicDBList();
+        example_usage.add("Todd is cool as heck");
+        example_usage.add("Todd is cool as ice");
+        example_usage.add("Todd is the cool dude around");
+        cardController.addNewCard(false,"deckID", "wooo", synonym, antonym, general_sense, example_usage);
 
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = cardController.getCards(emptyMap);

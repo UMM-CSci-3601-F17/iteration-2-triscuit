@@ -31,9 +31,12 @@ export class DeckService {
       return newDeck;
   }
 
-  public addNewCard(deckID: string, word: string, synonym: string[], antonym: string[], general: string[], example: string[]) {
+  // We pass the passwordState to the server to allow the process to be stopped if
+  // the person trying to addCards has not entered in the password
 
-      const body = {deckID:deckID, word:word, synonym:synonym, antonym:antonym, general_sense:general, example_usage:example};
+  public addNewCard(passwordState: boolean, deckID: string, word: string, synonym: string[], antonym: string[], general: string[], example: string[]) {
+
+      const body = {passwordState:passwordState, deckID:deckID, word:word, synonym:synonym, antonym:antonym, general_sense:general, example_usage:example};
       console.log(body);
 
       return this.http.post(this.cardUrl + "/add", body).map(res => res.json());
