@@ -14,3 +14,9 @@ button{
     text-align: center;
     margin: 25px;
 }
+
+#logo{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}

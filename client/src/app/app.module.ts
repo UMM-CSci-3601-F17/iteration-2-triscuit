@@ -23,6 +23,7 @@ import {PlayCardComponent} from "./play-component/play.card.component";
 import {MdDialog} from "@angular/material";
 import {NewCardDialogComponent} from "./new-card-dialog/new-card-dialog.component";
 import {NewDeckDialogComponent} from "./new-deck-dialog/new-deck-dialog.component";
+import {PasswordDialogComponent} from "./password-dialog/password-dialog.component";
 
 @NgModule({
 
@@ -42,11 +43,14 @@ import {NewDeckDialogComponent} from "./new-deck-dialog/new-deck-dialog.componen
         NewCardDialogComponent,
         NewDeckDialogComponent,
         PlayComponent,
-        PlayCardComponent
+        PlayCardComponent,
+        PasswordDialogComponent,
+        PlayComponent,
     ],
     entryComponents: [
         NewCardDialogComponent,
-        NewDeckDialogComponent
+        NewDeckDialogComponent,
+        PasswordDialogComponent
     ],
     providers: [
         DeckService,

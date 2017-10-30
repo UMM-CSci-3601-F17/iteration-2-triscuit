@@ -9,13 +9,13 @@ describe('deck-page', () => {
     });
 
     it('should have the correct header', () => {
-        page.navigateTo('59de8a1f012e92ce86a57176');
+        page.navigateTo('59de8a1f012e92ce86a57177');
         browser.sleep(1000);
-        expect(page.getDeckHeader()).toEqual("test deck 1");
+        expect(page.getDeckHeader()).toEqual("test deck 2");
     });
 
     it('should have a synonym, antonym, general usage, and example usage for each card.', () => {
-        page.navigateTo('59de8a1f012e92ce86a57176');
+        page.navigateTo('59de8a1f012e92ce86a57177');
         browser.sleep(1000);
         page.getAllCards().each( e => {
            expect(e.element(by.className("card-synonym")).element(by.className("card-desc")).getText()).toContain("Synonym");
@@ -26,8 +26,18 @@ describe('deck-page', () => {
         });
     });
 
+    it("should input password for deck and unlock adding cards", () => {
+        page.navigateTo('59de8a1f012e92ce86a57177');
+        browser.sleep(1000);
+        page.typeInput('deckPassword', 'password', false);
+        page.clickButton('enter-button');
+        expect(page.getElementsByClass('deck-fab').isEnabled()).toEqual([true]);
+    });
+
     it('should add one card', () => {
         page.navigateTo('59de8a1f012e92ce86a57177');
+        page.typeInput('deckPassword', 'password', false);
+        page.clickButton('enter-button');
         page.getAllCards().count().then( beforecount => {
             page.addCard('Word test', 'Synonym test', 'Antonym test', 'General Sense test', 'Example Usage test');
             browser.sleep(500); // wait for card to be added to list
@@ -37,6 +47,8 @@ describe('deck-page', () => {
 
     it('should add three cards', () => {
         page.navigateTo('59de8a1f012e92ce86a57177');
+        page.typeInput('deckPassword', 'password', false);
+        page.clickButton('enter-button');
         page.getAllCards().count().then( beforecount => {
             page.addCard('Word test 1', 'Synonym test 1', 'Antonym test 1', 'General Sense test 1', 'Example Usage test 1');
             browser.sleep(2000); // wait for stuff
@@ -50,15 +62,21 @@ describe('deck-page', () => {
 
     it('should add one card and check that its still there', () => {
         page.navigateTo('59de8a1f012e92ce86a57177');
+        page.typeInput('deckPassword', 'password', false);
+        page.clickButton('enter-button');
         page.getAllCards().count().then( beforecount => {
             page.addCard('Word test', 'Synonym test', 'Antonym test', 'General Sense test', 'Example Usage test');
             page.navigateTo('59de8a1f012e92ce86a57177');
+            browser.sleep(1000);
             expect(page.getAllCards().count()).toEqual(beforecount + 1);
         });
     });
 
     it('should add a random card and check that its there', () => {
         page.navigateTo('59de8a1f012e92ce86a57177');
+
+        page.typeInput('deckPassword', 'password', false);
+        page.clickButton('enter-button');
 
         var word = page.randomText(10);
         var synonym = page.randomText(10);

@@ -33,7 +33,8 @@ describe('DeckComponent', () => {
                       general_sense: ["test general_sense"],
                       example_usage: ["test example_usage"],
                   }
-              ]
+              ],
+              password: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
           })
       };
 
@@ -61,6 +62,7 @@ describe('DeckComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
   it('should load a deck', () => {
 
       expect(component.deck).toEqual({
@@ -76,7 +78,26 @@ describe('DeckComponent', () => {
                   general_sense: ["test general_sense"],
                   example_usage: ["test example_usage"],
               }
-          ]
+          ],
+          password: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
       });
-  })
+  });
+
+  // NOTE: Tests don't work, don't like SHA function for whatever reason
+
+
+  it('should check password', () => {
+      expect(component.deck.password).toEqual("5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8");
+      component.enteredPassword = "password";
+      component.checkPassword();
+      expect(component.correctPassword).toEqual(true);
+  });
+
+    it('should check password and return false', () => {
+        expect(component.deck.password).toEqual("5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8");
+        component.enteredPassword = "not_password";
+        component.checkPassword();
+        expect(component.correctPassword).toEqual(false);
+    });
+
 });

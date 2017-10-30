@@ -18,10 +18,11 @@ export class NewCardDialogComponent implements OnInit {
 
   constructor(public deckService : DeckService,
               public matDialogRef : MatDialogRef<NewCardDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { deckId : string },
-              public snackBar: MatSnackBar) {
+              @Inject(MAT_DIALOG_DATA) public data: { deckId : string, passwordState: boolean },
+              public snackBar: MatSnackBar) { }
 
-  }
+
+
     pulseState: boolean = false;
     newCardWord: string;
     newCardSynonym: string = "";
@@ -34,7 +35,6 @@ export class NewCardDialogComponent implements OnInit {
     newCardExamples: string[] = [];
 
   ngOnInit() {
-   //ViewChild('
   }
 
 
@@ -56,14 +56,15 @@ export class NewCardDialogComponent implements OnInit {
         this.newCardGenerals.push(this.newCardGeneral);
       if(this.newCardExample!='')
         this.newCardExamples.push(this.newCardExample);
-
-
-        this.deckService.addNewCard(this.data.deckId,
+        // We pass the passwordState as a way to keep people from adding cards
+        // to the DB if they got pass the password protection incorrectly
+        this.deckService.addNewCard(this.data.passwordState,
+            this.data.deckId,
             this.newCardWord,
             this.newCardSynonyms,
             this.newCardAntonyms,
             this.newCardGenerals,
-            this.newCardExamples).subscribe(
+            this.newCardExamples,).subscribe(
             succeeded => {
                 //this.cardAddSuccess = true;
                 this.matDialogRef.close(succeeded);
@@ -79,7 +80,10 @@ export class NewCardDialogComponent implements OnInit {
                 });
             });
 
-
+        /*this.newCardSynonyms = [];
+        this.newCardAntonyms = [];
+        this.newCardGenerals = [];
+        this.newCardExamples = [];asfasasdf*/
     }
 
 }

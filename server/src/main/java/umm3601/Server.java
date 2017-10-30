@@ -74,6 +74,7 @@ public class Server {
         post("api/cards/add", cardController::addNewCard);
 
 
+
         // Called after each request to insert the GZIP header into the response.
         // This causes the response to be compressed _if_ the client specified
         // in their request that they can accept compressed responses.

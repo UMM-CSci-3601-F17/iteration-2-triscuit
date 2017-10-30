@@ -13,6 +13,10 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
@@ -82,6 +86,7 @@ public class DeckController {
             Aggregates.match(filterDoc),
             Aggregates.project(Projections.fields(
                 Projections.include("name"),
+                Projections.include("password"),
                 Projections.computed("count", new Document("$size", "$cards"))
             ))
         ));
@@ -100,9 +105,10 @@ public class DeckController {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
                     String name = dbO.getString("name");
+                    String password = dbO.getString("password");
 
 
-                    Document newDeck = addNewDeck(name);
+                    Document newDeck = addNewDeck(name, password);
                     if (newDeck != null) {
                         return newDeck.toJson();
                     } else {
@@ -135,25 +141,80 @@ public class DeckController {
 
     }
 
-    public Document addNewDeck(String name){
+    public Document addNewDeck(String name, String password){
         if (name == null || name.equals("")) {
             return null;
         }
         Document newDeck = new Document();
         ObjectId newID = new ObjectId();
         System.out.println(newID.toString());
+
         newDeck.append("_id", newID);
         newDeck.append("name", name);
         newDeck.append("cards", Collections.emptyList());
-        try{
-            deckCollection.insertOne(newDeck);
-        }
-        catch(MongoException me){
-            me.printStackTrace();
-            return null;
+        // Have to check if password is null or else it will error out
+        if(password == null) {
+            newDeck.append("password", password);
+
+            try{
+                deckCollection.insertOne(newDeck);
+            }
+            catch(MongoException me){
+                me.printStackTrace();
+                return null;
+            }
+
+            return newDeck;
+
+        } else {
+            newDeck.append("password", SHA(password));
+
+            try {
+                deckCollection.insertOne(newDeck);
+            } catch (MongoException me) {
+                me.printStackTrace();
+                return null;
+            }
+
+            return newDeck;
+
         }
 
-        return newDeck;
     }
+
+    /**
+     *
+     * @param password
+     * @return An SHA256 hash of the password so it can be securely stored in the DB
+     */
+    public static String SHA(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes("UTF-8"));
+            byte[] hash = md.digest();
+            StringBuffer hexString = new StringBuffer();
+
+            for(int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1)
+                    hexString.append('0');
+                hexString.append(hex);
+            }
+
+            password = hexString.toString();
+
+        }
+
+        catch(NoSuchAlgorithmException e) {
+            System.out.println("NoSuchAlgorithmException");
+        }
+
+        catch (UnsupportedEncodingException e) {
+            System.out.println("UnsupportedEncodingException");
+        }
+
+        return password;
+    }
+
 
 }

@@ -4723,6 +4723,10 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+sha256-es@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/sha256-es/-/sha256-es-1.8.2.tgz#0f25af8721645b69f1e7a4f1496adf9f197d88bf"
+
 shallow-clone@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/shallow-clone/-/shallow-clone-0.1.2.tgz#5909e874ba77106d73ac414cfec1ffca87d97060"
