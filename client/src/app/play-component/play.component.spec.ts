@@ -8,6 +8,7 @@ import {DeckService} from "../deck/deck.service";
 import {ActivatedRoute} from "@angular/router";
 import {SharedModule} from "../shared.module";
 import {CardComponent} from "../card-component/card.component";
+import {PlayCardComponent} from "./play.card.component";
 import {CardState} from "./CardState";
 
 describe('PlayComponent', () => {
@@ -30,26 +31,26 @@ describe('PlayComponent', () => {
               cards: [
                   {   _id : "test id",
                       word : "test word",
-                      synonym : "test synonym",
-                      antonym: "test antonym",
-                      general_sense: "test general_sense",
-                      example_usage: "test example_usage",
+                      synonym : ["test synonym"],
+                      antonym: ["test antonym"],
+                      general_sense: ["test general_sense"],
+                      example_usage: ["test example_usage"],
                   },
 
                   {   _id : "test id",
                       word : "test word",
-                      synonym : "test synonym",
-                      antonym: "test antonym",
-                      general_sense: "test general_sense",
-                      example_usage: "test example_usage",
+                      synonym : ["test synonym"],
+                      antonym: ["test antonym"],
+                      general_sense: ["test general_sense"],
+                      example_usage: ["test example_usage"],
                   },
 
                   {   _id : "test id",
                       word : "test word",
-                      synonym : "test synonym",
-                      antonym: "test antonym",
-                      general_sense: "test general_sense",
-                      example_usage: "test example_usage",
+                      synonym : ["test synonym"],
+                      antonym: ["test antonym"],
+                      general_sense: ["test general_sense"],
+                      example_usage: ["test example_usage"],
                   }
               ]
           })
@@ -57,7 +58,7 @@ describe('PlayComponent', () => {
 
     TestBed.configureTestingModule({
         imports: [SharedModule],
-      declarations: [ PlayComponent, CardComponent ],
+      declarations: [ PlayComponent, PlayCardComponent ],
         providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
             {provide: DeckService, useValue: deckServiceStub}, {
                 provide: ActivatedRoute,
