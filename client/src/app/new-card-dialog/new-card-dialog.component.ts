@@ -39,23 +39,12 @@ export class NewCardDialogComponent implements OnInit {
 
 
 
-    public pushNewCard(hint:string): void{
-        if(hint==='syn'){
-            this.newCardSynonyms.push(this.newCardSynonym);
-            this.newCardSynonym = "";
-        }
-        if(hint==='ant'){
-            this.newCardAntonyms.push(this.newCardAntonym);
-            this.newCardAntonym = "";
-        }
-        if(hint==='gen'){
-            this.newCardGenerals.push(this.newCardGeneral);
-            this.newCardGeneral = "";
-        }
-        if(hint==='ex'){
-            this.newCardExamples.push(this.newCardExample);
-            this.newCardExample = "";
-        }
+    public pushNewCard(hintType:string,hint:string,hints:string[]): void{
+        hints.push(hint);
+        this.snackBar.open("Added "+hintType+": "+hint, null, {
+            duration: 2000,
+        });
+
     }
 
     public addNewCard(): void {
