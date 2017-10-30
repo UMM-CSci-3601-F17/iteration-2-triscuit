@@ -31,7 +31,6 @@ export class DeckComponent implements OnInit {
 
   checkPassword() {
       this.enteredPassword = SHA256.hash(this.enteredPassword);
-      console.log(this.enteredPassword);
       this.correctPassword = (this.enteredPassword === this.deck.password);
       if(this.correctPassword === true) {
           this.snackBar.open("Correct Password!", null, {
