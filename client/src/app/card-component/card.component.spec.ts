@@ -36,6 +36,7 @@ describe('CardComponent', () => {
 
     it('should check that card is added correctly', () => {
 
+        expect(component.card.word).toContain("test word");
         expect(component.card.synonym).toContain("test synonym");
         expect(component.card.antonym).toContain("test antonym");
         expect(component.card.general_sense).toContain("test general_sense");

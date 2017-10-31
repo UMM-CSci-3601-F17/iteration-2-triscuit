@@ -260,15 +260,14 @@ public class CardControllerSpec {
         general_sense.add("review/QA");
         example_usage.add("This is virtually done");
 
-
         cardController.addNewCard(true, testDeckId.toHexString(), "Virtually", synonym, antonym, general_sense, example_usage);
-
 
         String jsonResult = deckController.getDeck(testDeckId.toHexString());
         Document deck = Document.parse(jsonResult);
         ArrayList<Document> cards = deck.get("cards", ArrayList.class);
         assertEquals("Should be 4 cards in the deck", 4, cards.size());
     }
+
     @Test
     public void tryAddWithNullParameters() {
         cardController.addNewCard(false, null, null, null, null, null, null);
