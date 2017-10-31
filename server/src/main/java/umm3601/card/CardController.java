@@ -159,14 +159,14 @@ public class CardController {
     }
 
     public BasicDBList retrieveHints(BasicDBObject dbO, String key){
-        //try {
+        try {
             BasicDBList hints = (BasicDBList) dbO.get(key);
             return hints;
-        //}
-        /*catch (ClassCastException e){
+        }
+        catch (ClassCastException e){
             System.err.println("Received an incorrect object type.");
             return null;
-        }*/
+        }
 
     }
 

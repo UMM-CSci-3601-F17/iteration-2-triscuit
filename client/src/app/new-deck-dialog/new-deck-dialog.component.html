@@ -7,6 +7,7 @@
         <mat-form-field>
             <input matInput id="deckPassword" #input type="password" placeholder="Password" [(ngModel)]="newDeckPassword" name="newDeckPassword">
         </mat-form-field>
+
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-raised-button id="new-deck-submit" color="primary" #input type="button" [disabled]="!newCardForm.form.valid" type="submit">Add Deck</button>
