@@ -1,3 +1,5 @@
+
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Card} from "../card/card";
 import {CardState} from "./CardState";
@@ -8,37 +10,31 @@ import {CardState} from "./CardState";
     styleUrls: ['./play.card.component.css']
 })
 export class PlayCardComponent implements OnInit {
-    isRandomized: boolean;
-    syn: boolean;
-    ant: boolean;
-    gen: boolean;
-    ex: boolean;
-    hintIndex: number;
-    synIndex: number;
-    antIndex: number;
-    genIndex: number;
-    exIndex: number;
+
+    syn: boolean = false;
+    ant: boolean = false;
+    gen: boolean = false;
+    ex: boolean = false;
+    hintIndex: number=0;
+    synIndex: number=0;
+    antIndex: number=0;
+    genIndex: number=0;
+    exIndex: number=0;
 
     constructor() {
-        this.isRandomized = false;
-        this.syn = false;
-        this.ant = false;
-        this.gen = false;
-        this.ex = false;
-        this.hintIndex = 0;
-        this.synIndex = 0;
-        this.antIndex = 0;
-        this.genIndex = 0;
-        this.exIndex = 0;
+
     }
 
     @Input() card: Card;
 
     @Input() selected?: number = 0;
 
+/*
     public getRandom(hints:string[],hint:string):string{
+        console.log('synonym status'+this.syn);
         if(hint=='syn') {
             if (!this.syn) {
+                console.log('synonym status'+this.syn);
                 this.syn = true;
                 this.synIndex = Math.floor(Math.random() * (hints.length));
                 console.log(this.synIndex);
@@ -81,6 +77,7 @@ export class PlayCardComponent implements OnInit {
         }
         return hints[this.hintIndex];
     }
+    */
 
     ngOnInit() {
     }
@@ -89,3 +86,4 @@ export class PlayCardComponent implements OnInit {
 
 
 }
+

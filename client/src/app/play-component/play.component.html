@@ -7,7 +7,18 @@
 
 
             <!--<app-card [card]="card"></app-card>!-->
-            <play-card class="play-card" [card]="card" [selected]="this.getCardState(ind).selected"></play-card>
+           <!-- <play-card class="play-card" [card]="card" [selected]="this.getCardState(ind).selected"></play-card>!-->
+
+            <mat-card>
+                <mat-card-title class="card-word">{{ card.word }}</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <div class="card-synonym card-line" [ngClass]="{'hint-selected': this.getCardState(ind).selected == 1}"><div class="card-desc">Synonym:</div> <div class="card-cont">{{ this.getCardState(ind).getRandom(card.synonym, 'syn') }}</div></div>
+                    <div class="card-antonym card-line" [ngClass]="{'hint-selected': this.getCardState(ind).selected == 2}"><div class="card-desc">Antonym:</div> <div class="card-cont">{{ this.getCardState(ind).getRandom(card.antonym, 'ant') }}</div></div>
+                    <div class="card-general-usage card-line" [ngClass]="{'hint-selected': this.getCardState(ind).selected == 3}"><div class="card-desc">General usage:</div> <div class="card-cont">{{ this.getCardState(ind).getRandom(card.general_sense, 'gen') }}</div></div>
+                    <div class="card-example-usage card-line" [ngClass]="{'hint-selected': this.getCardState(ind).selected == 4}"><div class="card-desc">Example usage:</div> <div class="card-cont">{{ this.getCardState(ind).getRandom(card.example_usage, 'ex') }}</div></div>
+                </mat-card-content>
+            </mat-card>
 
             <button class="hint-button" mat-raised-button color="primary" [disabled]="this.getCardState(ind).isComplete || !this.getCardState(ind).cardHints.length" (click)="this.getCardState(ind).randomizeSages()">Hint?</button>
             <button class="got-it-button" mat-raised-button color="primary" [disabled]="this.getCardState(ind).isComplete" (click)="this.addPoints(ind)">Got It!</button> <span class="score">Score: {{this.points}}</span>
