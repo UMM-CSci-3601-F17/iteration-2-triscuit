@@ -61,7 +61,14 @@ describe('CardComponent', () => {
         expect(methodComponent.getRandom(component.card.example_usage,'ex')).toEqual(methodComponent.getRandom(component.card.example_usage,'ex'));
     });
 
+    it('should return initial value of hint array if it has already been randomized', () => {
+        methodComponent.ex = true;
+        expect(methodComponent.getRandom(component.card.example_usage, 'ex')).toEqual('test example_usage');
+    });
+
 });
+
+
 
 @Component({
     selector: 'test-component-wrapper',
