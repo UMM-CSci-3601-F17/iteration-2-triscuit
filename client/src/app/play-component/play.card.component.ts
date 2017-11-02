@@ -1,14 +1,15 @@
+
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Card} from "../card/card";
+import {CardState} from "./CardState";
 
-
-
-export class CardState {
-    public cardPoints:number;
-    public cardHints:number[];
-    public isComplete: boolean;
-    public isRandomized: boolean;
-    public selected: number;
+@Component({
+    selector: 'play-card',
+    templateUrl: './play.card.component.html',
+    styleUrls: ['./play.card.component.css']
+})
+export class PlayCardComponent implements OnInit {
 
     syn: boolean = false;
     ant: boolean = false;
@@ -20,28 +21,15 @@ export class CardState {
     genIndex: number=0;
     exIndex: number=0;
 
-
-    constructor(){
-
-        this.cardPoints = 5;
-        this.cardHints = [1,2,3,4];
-        this.isComplete = false;
-        this.isRandomized = false;
-        this.selected = 0;
-    }
-
-    public randomizeSages(): void{
-        if(this.cardHints.length > 0 && !this.isComplete) {
-            let randnum = Math.floor(Math.random() * this.cardHints.length);
-            this.selected = this.cardHints[randnum];
-
-            this.cardHints.splice(randnum, 1);
-            this.cardPoints = this.cardPoints - 1;
-        }
-
+    constructor() {
 
     }
 
+    @Input() card: Card;
+
+    @Input() selected?: number = 0;
+
+/*
     public getRandom(hints:string[],hint:string):string{
         console.log('synonym status'+this.syn);
         if(hint=='syn') {
@@ -89,12 +77,13 @@ export class CardState {
         }
         return hints[this.hintIndex];
     }
+    */
 
-
-    public isDone(): void {
-        this.isComplete = true;
+    ngOnInit() {
     }
 
 
 
+
 }
+

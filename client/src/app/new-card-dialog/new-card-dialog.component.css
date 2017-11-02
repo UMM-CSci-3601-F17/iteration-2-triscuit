@@ -1,3 +1,16 @@
-.add-card-form-fields > *  {
+/*.add-card-form-fields > *  {
     width: 100%;
+}*/
+
+/*.form-field{
+    width: 100%;
+}*/
+
+.input-field{
+    width:70%;
+}
+
+
+.hint-count{
+    color: #005cb2;
 }

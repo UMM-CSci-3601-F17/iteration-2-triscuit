@@ -72,6 +72,18 @@ describe('deck-page', () => {
         });
     });
 
+    it('should add a card with multiple hints and check that its still there', () => {
+       page.navigateTo('59de8a1f012e92ce86a57177');
+       page.typeInput('deckPassword', 'password', false);
+       page.clickButton('enter-button');
+        page.getAllCards().count().then( beforecount => {
+            page.addCardWithHints('Word test', 'Synonym test', 'Antonym test', 'General Sense test', 'Example Usage test');
+            browser.sleep(1000);
+            expect(page.getAllCards().count()).toEqual(beforecount + 1);
+        });
+
+    });
+
     it('should add a random card and check that its there', () => {
         page.navigateTo('59de8a1f012e92ce86a57177');
 

@@ -24,9 +24,13 @@ kb-page-slider {
     min-height: 100px;
 }
 
-//.button-container {
-//    display: flex;
-//    align-items: center;
- //   justify-content: center;
-//}
+.hint-selected {
+    background-color: #ffee58;
+}
+.card-line {
+    margin-top: 5px;
+
+}
+.card-desc { float: left; width: 120px; }
+.card-cont { margin-left: 120px; }
 
