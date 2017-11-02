@@ -47,6 +47,21 @@ export class NewCardDialogComponent implements OnInit {
 
     }
 
+    public countHints(hints:string[], hint:string):number{
+      var count = hints.length;
+      if(hints.length==0&&hint==""){
+          return 0;
+      }
+      if(hints.length!=0&&hint!=""){
+          return count+1;
+      }
+      if (hint!=""){
+          return count+1;
+      }
+
+      return count;
+    }
+
     public addNewCard(): void {
       if(this.newCardSynonym!='')
         this.newCardSynonyms.push(this.newCardSynonym);
