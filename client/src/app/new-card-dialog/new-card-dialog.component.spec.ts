@@ -43,4 +43,26 @@ describe('NewCardDialogComponent', () => {
 
     });
 
+    it('should add a hint and increment count', () => {
+        var synonyms: string[] = [];
+        component.pushNewHint('Synonym', 'a synonym', synonyms);
+        expect(synonyms.length).toEqual(1);
+        expect(component.countHints(synonyms,'')).toEqual(1);
+    });
+
+    it('should not be able to add an empty string to hints', () => {
+        var antonyms: string[] = [];
+        component.pushNewHint('Antonym','',antonyms);
+        expect(antonyms.length).toEqual(0);
+        expect(component.countHints(antonyms,'')).toEqual(0);
+    });
+
+    it('should not be able to add more than 5 hints', () => {
+
+        var testArr: string[] = ['a','b','c','d','e'];
+        component.pushNewHint('test','f',testArr);
+        expect(testArr.length).toEqual(5);
+        expect(component.countHints(testArr,'')).toEqual(5)
+    });
+
 });
