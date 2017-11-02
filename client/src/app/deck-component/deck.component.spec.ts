@@ -28,10 +28,10 @@ describe('DeckComponent', () => {
               cards: [
                   {   _id : "test id",
                       word : "test word",
-                      synonym: ["test synonym"],
-                      antonym: ["test antonym"],
-                      general_sense: ["test general_sense"],
-                      example_usage: ["test example_usage"],
+                      synonym : ["test synonym", "test synonym1"],
+                      antonym: ["test antonym","test antonym1"],
+                      general_sense: ["test general_sense","test general_sense1"],
+                      example_usage: ["test example_usage","test example_usage1"],
                   }
               ],
               password: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
@@ -73,10 +73,10 @@ describe('DeckComponent', () => {
           cards: [
               {   _id : "test id",
                   word : "test word",
-                  synonym : ["test synonym"],
-                  antonym: ["test antonym"],
-                  general_sense: ["test general_sense"],
-                  example_usage: ["test example_usage"],
+                  synonym : ["test synonym", "test synonym1"],
+                  antonym: ["test antonym","test antonym1"],
+                  general_sense: ["test general_sense","test general_sense1"],
+                  example_usage: ["test example_usage","test example_usage1"],
               }
           ],
           password: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
