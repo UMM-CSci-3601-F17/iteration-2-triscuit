@@ -6,7 +6,7 @@ rm -r ~/"server" 2>/dev/null
 ./gradlew clean
 
 #Rebuild the project and extract it to home
-./gradlew build
+./gradlew build -x runClientTests
 cp server/build/distributions/server.tar ~/server.tar -v
 tar xvf ~/server.tar -C ~
 
