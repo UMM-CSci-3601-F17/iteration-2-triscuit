@@ -42,6 +42,23 @@ export class DeckPage {
         this.typeInput('exInput', example);
         this.clickButton('new-card-submit');
     }
+    addCardWithHints(word: string, synonym: string, antonym: string, general: string, example: string){
+        this.clickButton('cardDialog');
+        browser.sleep(100);
+        this.typeInput('wordInput', word);
+        this.typeInput('synInput', synonym);
+        this.clickButton('new-syn');
+        this.typeInput('synInput', synonym);
+        this.clickButton('new-syn');
+        this.typeInput('synInput', synonym);
+        this.typeInput('antInput', antonym);
+        this.clickButton('new-ant');
+        this.typeInput('genInput', general);
+        this.typeInput('exInput', example);
+        this.clickButton('new-ex');
+        this.typeInput('exInput', example);
+        this.clickButton('new-card-submit');
+    }
 
     // from https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
     randomText(length: number): string {

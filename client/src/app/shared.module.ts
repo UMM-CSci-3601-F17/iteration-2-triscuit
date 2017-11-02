@@ -60,7 +60,7 @@ const COVALENT_MODULES: any[] = [
 
 const OTHER_MODULES: any[] = [
     PageSliderModule
-]
+];
 
 
 @NgModule({

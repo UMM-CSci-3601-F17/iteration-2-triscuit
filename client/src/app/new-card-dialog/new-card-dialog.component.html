@@ -7,36 +7,43 @@
             <input matInput class="input-field" required id="wordInput" #input type="text" placeholder="Word" [(ngModel)]="newCardWord" name="newCardWord">
         </mat-form-field>
         </div>
+
         <div class="form-field">
+            <span class="hint-count">{{countHints(newCardSynonyms,newCardSynonym)}}</span>
             <mat-form-field class="input-field">
                 <input matInput [required]="newCardSynonyms.length==0" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
             </mat-form-field>
-            <button id="new-syn" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardSynonym==''" (click)="pushNewCard('Synonym',newCardSynonym,newCardSynonyms);newCardSynonym=''">
+            <button id="new-syn" class="addButton" mat-icon-button color="accent" matTooltip="Add another hint" [disabled]="newCardSynonym==''||newCardSynonyms.length>=4" (click)="pushNewHint('Synonym',newCardSynonym,newCardSynonyms);newCardSynonym=''">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
+
         <div class="form-field">
-        <mat-form-field class="input-field">
+            <span class="hint-count">{{countHints(newCardAntonyms,newCardAntonym)}}</span>
+        <mat-form-field class="input-field" >
             <input matInput [required]="newCardAntonyms.length==0" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
         </mat-form-field>
-        <button id="new-ant" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardAntonym==''" (click)="pushNewCard('Antonym',newCardAntonym,newCardAntonyms);newCardAntonym=''">
+        <button id="new-ant" class="addButton" mat-icon-button  color="accent" matTooltip="Add another hint" [disabled]="newCardAntonym==''||newCardAntonyms.length>=4" (click)="pushNewHint('Antonym',newCardAntonym,newCardAntonyms);newCardAntonym=''">
             <mat-icon>add</mat-icon>
         </button>
         </div>
+
         <div class="form-field">
+            <span class="hint-count">{{countHints(newCardGenerals,newCardGeneral)}}</span>
         <mat-form-field class="input-field">
             <input matInput [required]="newCardGenerals.length==0" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
         </mat-form-field>
-        <button id="new-gen" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardGeneral==''" (click)="pushNewCard('General Usage',newCardGeneral,newCardGenerals);newCardGeneral=''">
+        <button id="new-gen" class="addButton" mat-icon-button  color="accent" matTooltip="Add another hint" [disabled]="newCardGeneral==''||newCardGenerals.length>=4" (click)="pushNewHint('General Usage',newCardGeneral,newCardGenerals);newCardGeneral=''">
             <mat-icon>add</mat-icon>
         </button>
 
         </div>
         <div class="form-field">
+            <span class="hint-count">{{countHints(newCardExamples,newCardExample)}}</span>
         <mat-form-field class="input-field">
             <input class="input-field" matInput [required]="newCardExamples.length==0" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
         </mat-form-field>
-        <button id="new-ex" class="addButton" mat-icon-button [@tdPulse]="pulseState" (click)="pulseState = !pulseState" color="accent" matTooltip="Add another hint" [disabled]="newCardExample==''" (click)="pushNewCard('Example Usage',newCardExample,newCardExamples);newCardExample=''">
+        <button id="new-ex" class="addButton" mat-icon-button color="accent" matTooltip="Add another hint" [disabled]="newCardExample==''||newCardExamples.length>=4" (click)="pushNewHint('Example Usage',newCardExample,newCardExamples);newCardExample=''">
             <mat-icon>add</mat-icon>
         </button>
         </div>

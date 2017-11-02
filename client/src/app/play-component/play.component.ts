@@ -3,7 +3,8 @@ import {DeckService} from "../deck/deck.service";
 import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {CardState} from "./CardState";
-
+import {Card} from "../card/card";
+import {PlayCardComponent} from "./play.card.component";
 
 
 @Component({
@@ -17,6 +18,8 @@ export class PlayComponent implements OnInit {
 
     deck : Deck;
 
+    public cards: Card[];
+
     public pageNumber: number = 0;
     public pageCount: number = 0;
 
@@ -24,9 +27,15 @@ export class PlayComponent implements OnInit {
 
     public cardStates: CardState[];
 
+    public synonym: string;
+    public antonym: string;
+    public general_sense: string;
+    public example_usage: string;
+
 
     constructor(public deckService : DeckService, private route: ActivatedRoute) {
         this.cardStates = [];
+        this.cards = [];
     }
 
 
@@ -50,6 +59,8 @@ export class PlayComponent implements OnInit {
     }
 
 
+
+
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.deckid = params['deck'];
@@ -57,6 +68,7 @@ export class PlayComponent implements OnInit {
             this.deckService.getDeck(this.deckid).subscribe(
                 deck => {
                     this.deck = deck;
+                    this.cards = this.deck.cards;
                 }
             );
         });
