@@ -43,13 +43,12 @@ export class CardState {
     }
 
     public getRandom(hints:string[],hint:string):string{
-        console.log('synonym status'+this.syn);
+
         if(hint=='syn') {
             if (!this.syn) {
-                console.log('synonym status'+this.syn);
+
                 this.syn = true;
                 this.synIndex = Math.floor(Math.random() * (hints.length));
-                console.log(this.synIndex);
                 return hints[this.synIndex];
             }
             else{
@@ -60,7 +59,6 @@ export class CardState {
             if (!this.ant) {
                 this.ant = true;
                 this.antIndex = Math.floor(Math.random() * (hints.length));
-                console.log(this.antIndex);
                 return hints[this.antIndex];
             }
             else{
@@ -70,7 +68,6 @@ export class CardState {
             if (!this.gen) {
                 this.gen = true;
                 this.genIndex = Math.floor(Math.random() * (hints.length));
-                console.log(this.genIndex);
                 return hints[this.genIndex];
             }
             else{
@@ -80,7 +77,6 @@ export class CardState {
             if (!this.ex) {
                 this.ex = true;
                 this.exIndex = Math.floor(Math.random() * (hints.length));
-                console.log(this.exIndex);
                 return hints[this.exIndex];
             }
             else{
