@@ -38,10 +38,13 @@ describe('CardComponent', () => {
 
         expect(component.card.word).toContain("test word");
         expect(component.card.synonym).toContain("test synonym");
+        expect(component.card.synonym).toContain("test synonym1");
         expect(component.card.antonym).toContain("test antonym");
+        expect(component.card.antonym).toContain("test antonym1");
         expect(component.card.general_sense).toContain("test general_sense");
+        expect(component.card.general_sense).toContain("test general_sense1");
         expect(component.card.example_usage).toContain("test example_usage");
-
+        expect(component.card.example_usage).toContain("test example_usage1");
 
     });
 
@@ -59,10 +62,10 @@ class TestComponentWrapper {
     card : Card = {
         _id : "test id",
         word : "test word",
-        synonym : ["test synonym"],
-        antonym: ["test antonym"],
-        general_sense: ["test general_sense"],
-        example_usage: ["test example_usage"],
+        synonym : ["test synonym", "test synonym1"],
+        antonym: ["test antonym","test antonym1"],
+        general_sense: ["test general_sense","test general_sense1"],
+        example_usage: ["test example_usage","test example_usage1"],
     };
 
 
