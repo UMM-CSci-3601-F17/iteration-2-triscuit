@@ -9,7 +9,7 @@
         </div>
 
         <div class="form-field">
-            <span class="hint-count">{{countHints(newCardSynonyms,newCardSynonym)}}</span>
+            <span id="syn-count" class="hint-count">{{countHints(newCardSynonyms,newCardSynonym)}}</span>
             <mat-form-field class="input-field">
                 <input matInput [required]="newCardSynonyms.length==0" id="synInput" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym" name="newCardSynonym">
             </mat-form-field>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-field">
-            <span class="hint-count">{{countHints(newCardAntonyms,newCardAntonym)}}</span>
+            <span id="ant-count" class="hint-count">{{countHints(newCardAntonyms,newCardAntonym)}}</span>
         <mat-form-field class="input-field" >
             <input matInput [required]="newCardAntonyms.length==0" id="antInput" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym" name="newCardAntonym">
         </mat-form-field>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-field">
-            <span class="hint-count">{{countHints(newCardGenerals,newCardGeneral)}}</span>
+            <span id="gen-count" class="hint-count">{{countHints(newCardGenerals,newCardGeneral)}}</span>
         <mat-form-field class="input-field">
             <input matInput [required]="newCardGenerals.length==0" id="genInput" #input type="text" placeholder="General Sense" [(ngModel)]="newCardGeneral" name="newCardGeneral">
         </mat-form-field>
@@ -39,7 +39,7 @@
 
         </div>
         <div class="form-field">
-            <span class="hint-count">{{countHints(newCardExamples,newCardExample)}}</span>
+            <span id="ex-count" class="hint-count">{{countHints(newCardExamples,newCardExample)}}</span>
         <mat-form-field class="input-field">
             <input class="input-field" matInput [required]="newCardExamples.length==0" id="exInput" #input type="text" placeholder="Example Usage" [(ngModel)]="newCardExample" name="newCardExample">
         </mat-form-field>

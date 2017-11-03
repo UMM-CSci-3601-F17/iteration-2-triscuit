@@ -113,7 +113,6 @@ public class CardController {
             {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
-                    System.out.println(dbO);
                     boolean passwordState = dbO.getBoolean("passwordState");
                     String deckID = dbO.getString("deckID");
                     String word = dbO.getString("word");
