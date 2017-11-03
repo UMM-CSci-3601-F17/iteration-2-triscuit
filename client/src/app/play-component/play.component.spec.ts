@@ -7,8 +7,6 @@ import {MATERIAL_COMPATIBILITY_MODE} from "@angular/material";
 import {DeckService} from "../deck/deck.service";
 import {ActivatedRoute} from "@angular/router";
 import {SharedModule} from "../shared.module";
-import {CardComponent} from "../card-component/card.component";
-import {PlayCardComponent} from "./play.card.component";
 import {CardState} from "./CardState";
 
 describe('PlayComponent', () => {
@@ -59,7 +57,7 @@ describe('PlayComponent', () => {
 
     TestBed.configureTestingModule({
         imports: [SharedModule],
-      declarations: [ PlayComponent, PlayCardComponent ],
+      declarations: [ PlayComponent],
         providers: [{provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
             {provide: DeckService, useValue: deckServiceStub}, {
                 provide: ActivatedRoute,

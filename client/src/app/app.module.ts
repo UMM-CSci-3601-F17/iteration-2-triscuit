@@ -19,7 +19,6 @@ import {DeckListComponent} from "./deck-list-component/deck-list.component";
 import {DeckComponent} from "./deck-component/deck.component";
 import {DeckService} from "./deck/deck.service";
 import {PlayComponent} from "./play-component/play.component";
-import {PlayCardComponent} from "./play-component/play.card.component";
 import {MdDialog} from "@angular/material";
 import {NewCardDialogComponent} from "./new-card-dialog/new-card-dialog.component";
 import {NewDeckDialogComponent} from "./new-deck-dialog/new-deck-dialog.component";

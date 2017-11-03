@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {Deck} from "../deck/deck";
 import {CardState} from "./CardState";
 import {Card} from "../card/card";
-import {PlayCardComponent} from "./play.card.component";
 
 
 @Component({
