@@ -60,9 +60,9 @@ export class DeckPage {
         this.clickButton('new-card-submit');
     }
 
-    getHintCount(id: string){
 
-    }
+
+
 
     // from https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
     randomText(length: number): string {
