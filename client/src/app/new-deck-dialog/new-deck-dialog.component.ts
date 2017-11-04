@@ -20,6 +20,9 @@ export class NewDeckDialogComponent implements OnInit {
     newDeckPassword: string;
 
     public addNewDeck(): void {
+        if (this.newDeckPassword === "") {
+            this.newDeckPassword = null;
+        }
         this.deckService.addNewDeck(this.newDeckName, this.newDeckPassword).subscribe(
             succeeded => {
                 this.deckService.decks.push(succeeded);
